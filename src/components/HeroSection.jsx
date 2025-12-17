@@ -63,18 +63,47 @@ const HeroSection = () => {
         `}</style>
 
         {/* --- LAYER 1: BACKGROUND IMAGE --- */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-80">
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-90">
            <img src="https://framerusercontent.com/images/S0WuutzwwVpJ702VbwusD6PS8.jpg?scale-down-to=1024" alt="" className="w-full h-full object-cover object-center" /> 
         </div>
+ 
+ <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2 w-[700px] h-[380px] pointer-events-none z-0">
+            <div
+              className="w-full h-full rounded-full blur-[100px] opacity-100 -mt-50"
+              style={{
+                background:
+                  'radial-gradient(ellipse at center, rgba(255,255,255,0.9) 100%, rgba(255,255,255,0.4) 55%, rgba(255,255,255,0) 20%)',
+            }}
+            
+            
+          />
+        
+        </div>
+        
+          <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-20">
+           <img src="https://framerusercontent.com/images/S0WuutzwwVpJ702VbwusD6PS8.jpg?scale-down-to=1024" alt="" className="w-full h-full object-cover object-center" /> 
+        </div>
+      
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-30 flex justify-center items-center -mt-10">
+           <img src="https://framerusercontent.com/images/hXGfj7QYzUxpGpYMeb3MfCxv6Y.png" alt="" className="w-[800px] h-full object-cover object-center" /> 
+        </div>
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-30 flex justify-center items-center mt-10">
+           <img src="https://framerusercontent.com/images/O1Y9JKiQNEXruAmXdiiHcq6LgzE.png" alt="" className="w-[800px] h-full object-cover object-center" /> 
+        </div>
+ <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-65">
+           <img src="https://framerusercontent.com/images/S0WuutzwwVpJ702VbwusD6PS8.jpg" alt="" className="w-full h-full object-cover object-center" /> 
+        </div>
+ 
+        
 
         {/* --- LAYER 2: BIG BG TEXT (Moves UP) --- */}
         <motion.div 
           style={{ x: textX, y: textParallaxY }} 
-          className="absolute top-[40%] md:top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center pointer-events-none"
+          className="absolute top-[40%] md:top-[70%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center pointer-events-none"
         >
-          <h1 className="text-[20vw] lg:text-[20vw] font-bold text-gray-300 leading-[0.8] tracking-tighter opacity-[0.03] uppercase whitespace-nowrap hidden md:block">
+         <h1 className="text-[20vw] lg:text-[25vw] font-medium font-oswald text-black leading-[0.2] tracking-tighter opacity-25 uppercase whitespace-nowrap hidden md:block">
             SANI MANI
-          </h1>
+                 </h1>
         </motion.div>
 
         {/* --- LAYER 3: MOBILE/TABLET SLIDER --- */}
@@ -128,7 +157,7 @@ const HeroSection = () => {
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full z-30 flex justify-center items-end h-[85vh] md:h-[95vh] lg:h-[100vh]"
         >
           
-          <div className="absolute w-80 h-80 rounded-full bg-white blur-[100px] top-40 opacity-70 pointer-events-none z-0"></div>
+          
 
           <div className="relative h-full w-auto aspect-[0.88] flex justify-center items-end scale-110 md:scale-125 origin-bottom">
             <img 
@@ -144,12 +173,17 @@ const HeroSection = () => {
             
             {/* Eye Tracking */}
             <div className="absolute inset-0 z-20 pointer-events-none hidden lg:block">
-              <div className="absolute top-[42.7%] left-[42.7%] w-[18px] flex items-center justify-center">
+
+              <div className="absolute top-[42.7%] left-[42.4%] w-[16px] flex items-center justify-center">
                   <motion.img style={{ x: eyeX, y: eyeY }} src="https://framerusercontent.com/images/PNvq0DmS4PLV65XRbZYfxEvB4hg.png" className="w-full" />
               </div>
-              <div className="absolute top-[42.7%] right-[43.2%] w-[18px] flex items-center justify-center">
+
+
+              <div className="absolute top-[42.7%] right-[43.3%] w-[16px] flex items-center justify-center">
                   <motion.img style={{ x: eyeX, y: eyeY }} src="https://framerusercontent.com/images/RPggzesnBIiZhEFIt1RBijR3oQ.png" className="w-full" />
               </div>
+
+
               <div className="absolute top-[40.5%] left-[49.5%] -translate-x-1/2 w-[29.5%] opacity-90">
                   <img src="https://framerusercontent.com/images/XdiR5SlQ8wxyaKg8JVgW7kOVTw.png" alt="" className="w-full" />
               </div>
@@ -161,12 +195,12 @@ const HeroSection = () => {
         {/* ✅ ADDED: style={{ y: imageParallaxY }} */}
         <motion.div 
           style={{ y: imageParallaxY }}
-          className="absolute bottom-24 md:bottom-10 z-50 text-center w-full px-4 pointer-events-none"
+          className="absolute bottom-24 md:-bottom-4 z-50 text-center w-full px-4 pointer-events-none"
         >
-          <h2 className=" text-gray-400 uppercase opacity-70  mb-2">
-          <span className='text-[12px] md:text-5xl font-bold'>I do UX</span><br /><span className='text-[12px] md:text-5xl font-sembold'>That Drives</span>
+          <h2 className=" text-white uppercase opacity-40  mb-2">
+          <span className='text-[12px] md:text-5xl font-normal'>I do UX</span><br /><span className='text-[12px] md:text-5xl font-light'>That Drives</span>
           </h2>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase leading-[0.8] tracking-tighter drop-shadow-2xl">
+          <h2 className="text-4xl  md:text-5xl font-medium text-white uppercase leading-[0.8] tracking-tighter drop-shadow-2xl opacity-65">
             Business Growth
       </h2>
       
@@ -174,7 +208,7 @@ const HeroSection = () => {
 
 
          {/* Rotating Star Animation (Perfect Center) */}
-<div className="mt-8 md:mt-12 w-full flex justify-center items-center z-50 relative">
+<div className="mt-6 w-full flex justify-center items-center z-50 relative">
   
   {/* Container Wrapper (Bigger Size for Bigger Triangles) */}
   <div className="relative w-16 h-16 flex items-center justify-center">
@@ -184,7 +218,7 @@ const HeroSection = () => {
       className="absolute border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[35px] border-t-[#00aaff] drop-shadow-[0_0_15px_#00aaff] mix-blend-screen origin-center"
       animate={{
         rotate: [0, 180, 180, 0], 
-        y: [0, -7, -7, 0] // বড় সাইজের কারণে পজিশন অ্যাডজাস্ট করা হয়েছে
+        y: [0, -7, -7, 0] 
       }}
       transition={{
         duration: 4,
@@ -200,7 +234,7 @@ const HeroSection = () => {
       className="absolute border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[35px] border-t-[#00aaff] drop-shadow-[0_0_15px_#00aaff] mix-blend-screen origin-center"
       animate={{
         rotate: [0, 360, 360, 0], 
-        y: [0, 0, 0, 0] // পারফেক্ট স্টারের জন্য একটু উপরে উঠবে
+        y: [0, 0, 0, 0] 
       }}
       transition={{
         duration: 4,
@@ -231,12 +265,11 @@ const testimonialData = [
   { title: "TRAILBLAZER", name: "KABIR MALKANI", pos: "top-[40%] right-[12%]" },
   
   { title: "MASTERFULL", name: "PHIL CLEVENGER", pos: "top-[65%] right-[6%]" },
-  { title: "INNOVATIVE", name: "JAYAN K.", pos: "bottom-[35%] left-[25%]" },
+  { title: "INNOVATIVE", name: "JAYAN K.", pos: "bottom-[10%] left-[5%]" },
   { title: "RELIABLE", name: "DINESH KRISHNAN", pos: "bottom-[35%] right-[25%]" },
   
   { title: "MASTERFULL", name: "PHIL CLEVENGER", pos: "top-[60%] left-[40%]" },
-  { title: "MASTERFULL", name: "PHIL CLEVENGER", pos: "top-[10%] left-[45%]" },
-  { title: "MASTERFULL", name: "PHIL CLEVENGER", pos: "top-[8%] right-[40%]" },
+  { title: "INNOVATIVE", name: "JAYAN K.", pos: "top-[15%] right-[25%]" },
 ];
 
 // --- MOBILE/TABLET SLIDER ---
@@ -285,7 +318,7 @@ const DesktopGrid = ({ className }) => {
           <div className="flex justify-center gap-1 mb-1 opacity-60">
             {[...Array(5)].map((_, i) => <span key={i} className="text-gray-500 text-[20px]">★</span>)}
           </div>
-          <h3 className="text-4xl xl:text-5xl font-bold uppercase leading-none tracking-tighter">{item.title}</h3>
+          <h3 className="text-3xl xl:text-4xl font-bold uppercase leading-none tracking-tighter">{item.title}</h3>
           <p className="text-[11px] font-medium mt-2 uppercase tracking-widest opacity-50">{item.name}</p>
         </div>
       ))}
