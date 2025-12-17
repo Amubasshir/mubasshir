@@ -256,20 +256,78 @@ const HeroSection = () => {
 };
 
 // --- DATA ---
+// --- DATA ---
 const testimonialData = [
-  { title: "VISIONARY", name: "HEMANT CHARYA", pos: "top-[15%] left-[8%]" },
-  { title: "PROACTIVE", name: "ADRIAN ORNIK", pos: "top-[48%] left-[5%]" },
-  { title: "VERSATILE", name: "ALOK ANAND", pos: "top-[22%] left-[28%]" },
-  { title: "ADAPTABLE", name: "ROHAN CHANDHOK", pos: "top-[42%] left-[26%]" },
-  { title: "DEDICATED", name: "ROBERT SMITH", pos: "top-[18%] right-[8%]" },
-  { title: "TRAILBLAZER", name: "KABIR MALKANI", pos: "top-[40%] right-[12%]" },
-  
-  { title: "MASTERFULL", name: "PHIL CLEVENGER", pos: "top-[65%] right-[6%]" },
-  { title: "INNOVATIVE", name: "JAYAN K.", pos: "bottom-[10%] left-[5%]" },
-  { title: "RELIABLE", name: "DINESH KRISHNAN", pos: "bottom-[35%] right-[25%]" },
-  
-  { title: "MASTERFULL", name: "PHIL CLEVENGER", pos: "top-[60%] left-[40%]" },
-  { title: "INNOVATIVE", name: "JAYAN K.", pos: "top-[15%] right-[25%]" },
+  {
+    title: "VISIONARY",
+    name: "HEMANT CHARYA",
+    pos: "top-[15%] left-[8%]",
+    titleSize: "text-[40px]",
+    nameSize: "text-[18px]",
+  },
+  {
+    title: "PROACTIVE",
+    name: "ADRIAN ORNIK",
+    pos: "top-[48%] left-[5%]",
+    titleSize: "text-[46px]",
+    nameSize: "text-[18px]",
+  },
+  {
+    title: "VERSATILE",
+    name: "ALOK ANAND",
+    pos: "top-[22%] left-[20%]",
+    titleSize: "text-[20px]",
+    nameSize: "text-[16px]",
+  },
+  {
+    title: "ADAPTABLE",
+    name: "ROHAN CHANDHOK",
+    pos: "top-[42%] left-[18%]",
+    titleSize: "text-[20px]",
+    nameSize: "text-[16px]",
+  },
+  {
+    title: "DEDICATED",
+    name: "ROBERT SMITH",
+    pos: "top-[18%] right-[8%]",
+    titleSize: "text-[46px]",
+    nameSize: "text-[18px]",
+  },
+  {
+    title: "TRAILBLAZER",
+    name: "KABIR MALKANI",
+    pos: "top-[40%] right-[5%]",
+    titleSize: "text-[40px]",
+    nameSize: "text-[18px]",
+  },
+  {
+    title: "MASTERFULL",
+    name: "PHIL CLEVENGER",
+    pos: "top-[65%] right-[6%]",
+    titleSize: "text-[35px]",
+    nameSize: "text-[18px]",
+  },
+  {
+    title: "INNOVATIVE",
+    name: "JAYAN K.",
+    pos: "bottom-[10%] left-[5%]",
+    titleSize: "text-[36px]",
+    nameSize: "text-[20px]",
+  },
+  {
+    title: "RELIABLE",
+    name: "DINESH KRISHNAN",
+    pos: "top-[40%] right-[20%]",
+    titleSize: "text-[20px]",
+    nameSize: "text-[16px]",
+  },
+  {
+    title: "RELIABLE",
+    name: "DINESH KRISHNAN",
+    pos: "top-[20%] right-[25%]",
+    titleSize: "text-[20px]",
+    nameSize: "text-[16px]",
+  },
 ];
 
 // --- MOBILE/TABLET SLIDER ---
@@ -297,10 +355,14 @@ const TestimonialSlider = () => {
           <div className="flex justify-center gap-1 mb-2">
             {[...Array(5)].map((_, i) => <span key={i} className="text-[#00aaff] text-[16px]">★</span>)}
           </div>
-          <h3 className="text-3xl md:text-5xl font-bold uppercase text-white tracking-tighter leading-none drop-shadow-lg">
+          
+          {/* ✅ FIXED: Applying titleSize dynamically */}
+          <h3 className={`${testimonialData[index].titleSize} tracking-[0.25em] font-medium text-gray-400 uppercase leading-none`}>
             {testimonialData[index].title}
           </h3>
-          <p className="text-[10px] md:text-xs font-medium mt-2 uppercase tracking-[0.25em] text-gray-400">
+          
+          {/* ✅ FIXED: Applying nameSize dynamically */}
+          <p className={`${testimonialData[index].nameSize} font-medium mt-2 uppercase tracking-[0.25em] text-gray-400`}>
             {testimonialData[index].name}
           </p>
         </motion.div>
@@ -318,8 +380,16 @@ const DesktopGrid = ({ className }) => {
           <div className="flex justify-center gap-1 mb-1 opacity-60">
             {[...Array(5)].map((_, i) => <span key={i} className="text-gray-500 text-[20px]">★</span>)}
           </div>
-          <h3 className="text-3xl xl:text-4xl font-bold uppercase leading-none tracking-tighter">{item.title}</h3>
-          <p className="text-[11px] font-medium mt-2 uppercase tracking-widest opacity-50">{item.name}</p>
+          
+          {/* ✅ FIXED: Applying titleSize dynamically */}
+          <h3 className={`${item.titleSize} font-bold uppercase leading-none tracking-tighter`}>
+            {item.title}
+          </h3>
+          
+          {/* ✅ FIXED: Applying nameSize dynamically */}
+          <p className={`${item.nameSize} font-medium mt-2 uppercase tracking-widest opacity-50`}>
+            {item.name}
+          </p>
         </div>
       ))}
     </div>
