@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useSpring, useTransform, useMotionValue, animate, AnimatePresence, useScroll } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 const HeroSection = () => {
   const containerRef = useRef(null);
@@ -9,14 +10,22 @@ const HeroSection = () => {
   const { scrollY } = useScroll();
   const textParallaxY = useTransform(scrollY, [0, 500], [0, -300]); 
   
-  // ✅ NEW: Image and Foreground Text move DOWN slightly (Positive Y) on scroll
+  // Image moves DOWN slightly (Positive Y) on scroll
   const imageParallaxY = useTransform(scrollY, [0, 500], [0, 50]); 
-  
   const opacity = useTransform(scrollY, [0, 800], [1, 0]);
 
   // --- MOUSE & EYE TRACKING ---
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  // Custom Cursor Coordinates
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  const springConfig = { stiffness: 500, damping: 28 }; // Snappy but smooth cursor
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
   const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
   const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
 
@@ -25,6 +34,11 @@ const HeroSection = () => {
   const textX = useTransform(springX, [-0.5, 0.5], [30, -30]);
 
   const handleMouseMove = (e) => {
+    // 1. Update Custom Cursor Position (Pixel values)
+    cursorX.set(e.clientX);
+    cursorY.set(e.clientY);
+
+    // 2. Update Eye Tracking (Percentage values)
     const width = window.innerWidth;
     const height = window.innerHeight;
     const xPct = (e.clientX - width / 2) / width;
@@ -55,29 +69,36 @@ const HeroSection = () => {
         ref={containerRef}
         onMouseMove={handleMouseMove}
         style={{ opacity }}
-        className="fixed top-0 left-0 w-full h-screen overflow-hidden flex flex-col items-center justify-start text-gray-300 font-oswald bg-[#0a0a0a] z-0"
+        // ✅ ADDED: 'cursor-none' to hide default cursor
+        className="fixed top-0 left-0 w-full h-screen overflow-hidden flex flex-col items-center justify-start text-gray-300 font-oswald bg-[#0a0a0a] z-0 cursor-none"
       >
         <style jsx global>{`
           @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap');
           .font-oswald { font-family: 'Oswald', sans-serif; }
         `}</style>
 
+        {/* --- CUSTOM CURSOR (WHITE DOT) --- */}
+        <motion.div
+            style={{
+                translateX: cursorXSpring,
+                translateY: cursorYSpring,
+            }}
+            className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+        />
+
         {/* --- LAYER 1: BACKGROUND IMAGE --- */}
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-90">
            <img src="https://framerusercontent.com/images/S0WuutzwwVpJ702VbwusD6PS8.jpg?scale-down-to=1024" alt="" className="w-full h-full object-cover object-center" /> 
         </div>
  
- <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2 w-[650px] h-[480px] pointer-events-none z-0">
+        <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2 w-[650px] h-[480px] pointer-events-none z-0">
             <div
               className="w-full h-full rounded-full blur-[100px] opacity-100 -mt-30"
               style={{
                 background:
                   'radial-gradient(ellipse at center, rgba(255,255,255,0.9) 100%, rgba(255,255,255,0.4) 55%, rgba(255,255,255,0) 20%)',
             }}
-            
-            
           />
-        
         </div>
         
           <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-20">
@@ -90,11 +111,9 @@ const HeroSection = () => {
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-30 flex justify-center items-center mt-10">
            <img src="https://framerusercontent.com/images/O1Y9JKiQNEXruAmXdiiHcq6LgzE.png" alt="" className="w-[800px] h-full object-cover object-center" /> 
         </div>
- <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-65">
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-75">
            <img src="https://framerusercontent.com/images/S0WuutzwwVpJ702VbwusD6PS8.jpg" alt="" className="w-full h-full object-cover object-center" /> 
         </div>
- 
-        
 
         {/* --- LAYER 2: BIG BG TEXT (Moves UP) --- */}
         <motion.div 
@@ -112,52 +131,47 @@ const HeroSection = () => {
         </div>
 
          {/* --- LAYER 4: DESKTOP TESTIMONIAL GRID (LIGHT INSIDE TEXT ONLY) --- */}
-                <div className="absolute inset-0 z-10 w-full h-full pointer-events-none hidden lg:block">
-                    
-                    {/* 1. Base Layer: Dark Text (Always Visible) */}
-                    <div className="absolute inset-0 w-full h-full z-10">
-                        <DesktopGrid className="text-[#333]" />
-                    </div>
-                    
-                    {/* 2. Highlight Layer: Moving Light (Visible ONLY inside Text) */}
-                    <motion.div 
-                      className="absolute inset-0 w-full h-full z-20"
-                      animate={{
-                        maskPosition: ["0% 0%", "100% 100%"] 
-                      }}
-                      transition={{
-                        duration: 20, 
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
-                      style={{
-                       
-                        
-                        maskImage: "repeating-linear-gradient(110deg, transparent, transparent 10%, black 10%, black 11%, transparent 11%)",
-                        WebkitMaskImage: "repeating-linear-gradient(110deg, transparent, transparent 10%, black 10%, black 11%, transparent 11%)",
-                        
-                        maskSize: "200% 200%",
-                        WebkitMaskSize: "200% 200%",
-                        
-                        
-                        maskComposite: "source-in", 
-                        WebkitMaskComposite: "source-in"
-                      }}
-                    >
-                      
-                      <DesktopGrid className="text-gray-400 opacity-50" />
-                    </motion.div>
-                </div>
+        <div className="absolute inset-0 z-10 w-full h-full pointer-events-none hidden lg:block">
+            
+            {/* 1. Base Layer: Dark Text (Always Visible) */}
+            <div className="absolute inset-0 w-full h-full z-10">
+                <DesktopGrid className="text-[#333]" />
+            </div>
+            
+            {/* 2. Highlight Layer: Moving Light (Visible ONLY inside Text) */}
+            <motion.div 
+              className="absolute inset-0 w-full h-full z-20"
+              animate={{
+                maskPosition: ["0% 0%", "100% 100%"] 
+              }}
+              transition={{
+                duration: 20, 
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              style={{
+                maskImage: "repeating-linear-gradient(110deg, transparent, transparent 10%, black 10%, black 11%, transparent 11%)",
+                WebkitMaskImage: "repeating-linear-gradient(110deg, transparent, transparent 10%, black 10%, black 11%, transparent 11%)",
+                
+                maskSize: "200% 200%",
+                WebkitMaskSize: "200% 200%",
+                
+                maskComposite: "source-in", 
+                WebkitMaskComposite: "source-in"
+              }}
+            >
+              <DesktopGrid className="text-gray-400 opacity-50" />
+            </motion.div>
+        </div>
         
 
         {/* --- LAYER 5: CHARACTER IMAGE (Moves DOWN Slightly) --- */}
-       
         <motion.div 
           style={{ y: imageParallaxY }} 
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full z-30 flex justify-center items-end h-[85vh] md:h-[95vh] lg:h-[100vh]"
         >
           
-          
+          <div className="absolute w-60 h-60 rounded-full bg-white blur-[100px] top-40 opacity-40 pointer-events-none"></div>
 
           <div className="relative h-full w-auto aspect-[0.88] flex justify-center items-end scale-110 md:scale-125 origin-bottom">
             <img 
@@ -178,11 +192,9 @@ const HeroSection = () => {
                   <motion.img style={{ x: eyeX, y: eyeY }} src="https://framerusercontent.com/images/PNvq0DmS4PLV65XRbZYfxEvB4hg.png" className="w-full" />
               </div>
 
-
               <div className="absolute top-[42.7%] right-[43.3%] w-[16px] flex items-center justify-center">
                   <motion.img style={{ x: eyeX, y: eyeY }} src="https://framerusercontent.com/images/RPggzesnBIiZhEFIt1RBijR3oQ.png" className="w-full" />
               </div>
-
 
               <div className="absolute top-[40.5%] left-[49.5%] -translate-x-1/2 w-[29.5%] opacity-90">
                   <img src="https://framerusercontent.com/images/XdiR5SlQ8wxyaKg8JVgW7kOVTw.png" alt="" className="w-full" />
@@ -192,7 +204,6 @@ const HeroSection = () => {
         </motion.div>
 
         {/* --- LAYER 6: BOTTOM TITLES (Moves DOWN Slightly with Image) --- */}
-        {/* ✅ ADDED: style={{ y: imageParallaxY }} */}
         <motion.div 
           style={{ y: imageParallaxY }}
           className="absolute bottom-24 md:-bottom-4 z-50 text-center w-full px-4 pointer-events-none"
@@ -203,9 +214,6 @@ const HeroSection = () => {
           <h2 className="text-4xl  md:text-5xl font-medium text-white uppercase leading-[0.8] tracking-tighter drop-shadow-2xl opacity-65">
             Business Growth
       </h2>
-      
-
-
 
          {/* Rotating Star Animation (Perfect Center) */}
 <div className="mt-6 w-full flex justify-center items-center z-50 relative">
@@ -249,13 +257,12 @@ const HeroSection = () => {
 </div>
         </motion.div>
 
-      
+       
       </motion.div>
     </>
   );
 };
 
-// --- DATA ---
 // --- DATA ---
 const testimonialData = [
   {
