@@ -67,9 +67,9 @@ const HeroSection = () => {
            <img src="https://framerusercontent.com/images/S0WuutzwwVpJ702VbwusD6PS8.jpg?scale-down-to=1024" alt="" className="w-full h-full object-cover object-center" /> 
         </div>
  
- <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2 w-[700px] h-[380px] pointer-events-none z-0">
+ <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2 w-[650px] h-[480px] pointer-events-none z-0">
             <div
-              className="w-full h-full rounded-full blur-[100px] opacity-100 -mt-50"
+              className="w-full h-full rounded-full blur-[100px] opacity-100 -mt-30"
               style={{
                 background:
                   'radial-gradient(ellipse at center, rgba(255,255,255,0.9) 100%, rgba(255,255,255,0.4) 55%, rgba(255,255,255,0) 20%)',
