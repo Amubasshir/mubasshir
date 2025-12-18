@@ -145,7 +145,7 @@ const HeroSection = () => {
     maskPosition: ["100% 100%", "0% 0%"] // reversed
   }}
   transition={{
-    duration: 20, 
+    duration: 50, 
     repeat: Infinity,
     ease: "linear"
   }}
@@ -160,9 +160,8 @@ const HeroSection = () => {
     WebkitMaskComposite: "source-in"
   }}
 >
-  <DesktopGrid className="text-gray-200 opacity-15" /> {/* reduce opacity for lighter effect */}
+  <DesktopGrid className="text-gray-200 opacity-15" /> 
 </motion.div>
-
 
         </div>
         
