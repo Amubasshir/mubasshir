@@ -126,7 +126,7 @@ const HeroSection = () => {
         </motion.div>
 
         {/* --- LAYER 3: MOBILE/TABLET SLIDER --- */}
-        <div className="lg:hidden absolute top-[10%] md:top-0 left-0 w-full z-50 flex justify-center">
+        <div className="lg:hidden absolute top-[5%] md:top-0 left-0 w-full z-50 flex justify-center">
           <TestimonialSlider />
         </div>
 
@@ -391,10 +391,10 @@ const TestimonialSlider = () => {
           </h3>
           
           {/* ✅ FIXED: Applying nameSize dynamically */}
-          <p className={`${testimonialData[index].nameSize} font-medium  uppercase tracking-[0.25em] text-gray-400`}>
+          <p className={`${testimonialData[index].nameSize} font-medium mt-2 uppercase tracking-[0.25em] text-gray-400`}>
             {testimonialData[index].name}
           </p>
-          <p className={`${testimonialData[index].componySize} font-medium max-w-xs uppercase tracking-[0.25em] text-gray-400`}>
+          <p className={`${testimonialData[index].componySize} font-medium mt-2 max-w-xs uppercase tracking-[0.25em] text-gray-400`}>
             {testimonialData[index].compony}
           </p>
         </motion.div>
