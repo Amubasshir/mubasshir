@@ -14,13 +14,13 @@ const ProcessComponent = () => {
       <div className="container mx-auto">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-12 md:mb-16 gap-6 md:gap-10">
+        <div className="flex flex-col md:flex-row items-start mb-12 md:mb-16 gap-6 md:gap-[100px]">
           <div className="space-y-4">
-            <p className="text-[#ff5c00] font-bold text-sm tracking-widest uppercase">Step-by-Step</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter italic">My Process, Step by Step</h2>
+            <p className="text-[#ff5c00] font-medium text-[30px] tracking-widest uppercase">Step-by-Step</p>
+            <h2 className="text-4xl md:text-[60px] font-extrabold max-w-[700px]">My Process, Step by Step</h2>
           </div>
-          <p className="text-zinc-400 max-w-xs text-base md:text-lg leading-snug">
-            From first ideas to final assets, I follow a clear, collaborative process.
+          <p className="text-white max-w-3xl text-base md:text-[30px] font-medium leading-snug">
+            From first ideas to final assets, I follow a clear, collaborative process—built to turn your vision into a brand that works and lasts.
           </p>
         </div>
 

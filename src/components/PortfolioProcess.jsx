@@ -3,34 +3,32 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 const PortfolioSection = () => {
-  // ===== CONFIG =====
   const SPEED = 0.003;
-  const SPACING = 200;
+  const SPACING = 250; 
 
   const [progress, setProgress] = useState(0);
   const requestRef = useRef();
 
-  // ===== DATA =====
   const cards = [
-    { id: 1, image: "https://images.unsplash.com/photo-1623944898147-384355b253c0?q=80&w=1974&auto=format&fit=crop" },
-    { id: 2, image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=2070&auto=format&fit=crop" },
-    { id: 3, image: "https://images.unsplash.com/photo-1550949826-b8c7e96b51c8?q=80&w=2070&auto=format&fit=crop" },
-    { id: 4, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop" },
-    { id: 5, image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1020&auto=format&fit=crop" },
-    { id: 6, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1888&auto=format&fit=crop" },
-    { id: 7, image: "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?q=80&w=1887&auto=format&fit=crop" },
-    { id: 8, image: "https://images.unsplash.com/photo-1623944898147-384355b253c0?q=80&w=1974&auto=format&fit=crop" },
-    { id: 9, image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=2070&auto=format&fit=crop" },
-    { id: 10, image: "https://images.unsplash.com/photo-1550949826-b8c7e96b51c8?q=80&w=2070&auto=format&fit=crop" },
-    { id: 11, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop" },
-    { id: 12, image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1020&auto=format&fit=crop" },
-    { id: 13, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1888&auto=format&fit=crop" },
-    { id: 14, image: "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?q=80&w=1887&auto=format&fit=crop" },
+    { id: 1, image: "https://framerusercontent.com/images/yvhQLfcVfRDA4M8BE59k74bo.png?scale-down-to=512" },
+    { id: 2, image: "https://framerusercontent.com/images/dAio0KHRY7lHrZi8wg3eNt62sQk.png?scale-down-to=512" },
+    { id: 3, image: "https://framerusercontent.com/images/e0FkdiSOGxltpb5MtRn4baq1apw.png?scale-down-to=1024" },
+    { id: 4, image: "https://framerusercontent.com/images/Z1Nmm1vGXXn1hP8KdHamuJ3DQ8U.png?scale-down-to=512" },
+    { id: 5, image: "https://framerusercontent.com/images/fOekqWbHEGdI4xWeC1u2BievpAA.png?scale-down-to=512" },
+    { id: 6, image: "https://framerusercontent.com/images/rBhlRqKtaT1HJXWYXIk0blfFQ.png?scale-down-to=512" },
+    { id: 7, image: "https://framerusercontent.com/images/BEeoXePZVGmIOSGR0fFyBM25tzQ.png?scale-down-to=512" },
+    { id: 8, image: "https://framerusercontent.com/images/9aPHcu4RyjGXugW5qJpz6MupeE.webp" },
+    { id: 9, image: "https://framerusercontent.com/images/4wxNhMbTyt1WpsjzbsWngqY.png?scale-down-to=1024" },
+    { id: 10, image: "https://framerusercontent.com/images/yvhQLfcVfRDA4M8BE59k74bo.png?scale-down-to=512" },
+    { id: 11, image: "https://framerusercontent.com/images/dAio0KHRY7lHrZi8wg3eNt62sQk.png?scale-down-to=512" },
+    { id: 12, image: "https://framerusercontent.com/images/e0FkdiSOGxltpb5MtRn4baq1apw.png?scale-down-to=1024" },
+    { id: 13, image: "https://framerusercontent.com/images/Z1Nmm1vGXXn1hP8KdHamuJ3DQ8U.png?scale-down-to=512" },
+    { id: 14, image: "https://framerusercontent.com/images/fOekqWbHEGdI4xWeC1u2BievpAA.png?scale-down-to=512" },
+    { id: 15, image: "https://framerusercontent.com/images/rBhlRqKtaT1HJXWYXIk0blfFQ.png?scale-down-to=512" },
   ];
 
   const CARD_COUNT = cards.length;
 
-  // ===== ANIMATION LOOP =====
   const animate = () => {
     setProgress((prev) => (prev + SPEED) % CARD_COUNT);
     requestRef.current = requestAnimationFrame(animate);
@@ -43,10 +41,20 @@ const PortfolioSection = () => {
 
   return (
     <section className="min-h-screen bg-[#050505] text-white overflow-hidden flex flex-col items-center justify-center py-16 relative">
-
+      <div className="text-center z-50 mb-4 max-w-3xl px-4">
+        <h4 className="text-[#ff5500] font-bold text-sm md:text-base uppercase tracking-widest mb-4">
+          Behind the Designs
+        </h4>
+        <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+          Curious What Else I’ve <br className="hidden md:block" /> Created?
+        </h2>
+        <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+          Explore more brand identities, packaging, and digital design work in my extended portfolio.
+        </p>
+      </div>
       {/* TOP BUTTON */}
-      <div className="z-20 mb-12">
-        <button className="group bg-white text-black pl-6 pr-1.5 py-2 rounded-full font-bold text-sm flex items-center gap-4 hover:scale-105 transition">
+      <div className="z-50 -mb-12">
+        <button className="group bg-white text-black pl-6 pr-2 py-2 rounded-full font-bold text-sm flex items-center gap-4 hover:scale-105 transition shadow-lg">
           <span>See more Projects</span>
           <div className="bg-[#ff5500] text-white p-2 rounded-full group-hover:rotate-45 transition">
             <ArrowRight size={18} strokeWidth={3} />
@@ -54,53 +62,56 @@ const PortfolioSection = () => {
         </button>
       </div>
 
-      {/* CAROUSEL */}
-      <div className="relative w-full h-[450px] md:h-[400px] flex items-center justify-center">
-
+      <div className="relative w-full h-[550px] flex items-center justify-center">
         {/* Fade masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-[#050505] to-transparent z-50" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-[#050505] to-transparent z-50" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-80 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent z-40 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-80 bg-gradient-to-l from-[#050505] via-[#050505]/80 to-transparent z-40 pointer-events-none" />
 
         <div className="relative w-full h-full flex items-center justify-center">
           {cards.map((card, index) => {
-            // ===== FIXED INFINITE OFFSET =====
             const rawOffset = index - progress;
-            const offset =
-              ((((rawOffset + CARD_COUNT / 2) % CARD_COUNT) + CARD_COUNT) % CARD_COUNT) -
-              CARD_COUNT / 2;
-
+            const offset = ((((rawOffset + CARD_COUNT / 2) % CARD_COUNT) + CARD_COUNT) % CARD_COUNT) - CARD_COUNT / 2;
             const dist = Math.abs(offset);
 
+            // ১. স্মুথনেস কন্ট্রোল (Math.cos ব্যবহার করা হয়েছে ধাক্কা দূর করতে)
+            // এটি কার্ড যখন মাঝখানে আসে তখন ট্রানজিশনটাকে লিনিয়ার না রেখে কার্ভড করে দেয়।
+            const smoothFactor = Math.cos(Math.min(Math.max(offset * 0.4, -Math.PI/2), Math.PI/2));
+
+            // ২. ট্রান্সফর্ম ভ্যালুসমূহ
             const translateX = offset * SPACING;
-            const rotateY = offset * -16;
-            const translateZ = -dist * 80;
-            const scale = 0.68 + dist * 0.3;
-            const zIndex = 100 - Math.floor(dist * 10);
-            const opacity = dist > CARD_COUNT / 2 ? 0 : 1;
+            const rotateY = offset * -18; // বাঁকানো
+            
+            // ৩. স্কেল এবং ডেপথ (মাঝখানের কার্ড ছোট, সাইডে বড় এবং সামনে)
+            // smoothFactor ব্যবহার করার কারণে ধাক্কা খাবে না
+            const scale = 0.9 - (smoothFactor * 0.5); 
+            const translateZ = (1 - smoothFactor) * 150; 
+            const zIndex = Math.round(100 - dist * 10);
+            const opacity = dist > 8 ? 0 : 1;
+            
 
             return (
               <div
-                key={card.id}
-                className="absolute will-change-transform rounded-3xl"
+                key={`${card.id}-${index}`}
+                className="absolute will-change-transform"
                 style={{
                   transform: `
-                    translate3d(${translateX}px, 0, 0)
-                    perspective(1400px)
+                    translate3d(${translateX}px, 0, ${translateZ}px)
+                    perspective(1600px)
                     rotateY(${rotateY}deg)
-                    translateZ(${translateZ}px)
                     scale(${scale})
                   `,
                   zIndex,
                   opacity,
+                  transition: 'opacity 0.3s ease-out'
                 }}
               >
-                <div className="w-[200px] h-[280px] md:w-[250px] md:h-[350px] rounded-3xl overflow-hidden bg-[#121212] shadow-2xl">
+                <div className="w-[220px] h-[320px] md:w-[520px] md:h-[700px] rounded-[2.5rem] overflow-hidden bg-[#121212] shadow-2xl  group relative">
                   <img
                     src={card.image}
-                    alt="project"
-                    className="w-full h-full object-cover"
+                    alt="portfolio"
+                    className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/20 opacity-40" />
+           
                 </div>
               </div>
             );
@@ -109,8 +120,8 @@ const PortfolioSection = () => {
       </div>
 
       {/* FOOTER */}
-      <div className="flex justify-center w-full max-w-7xl mt-10 px-4 z-10">
-        <div className="grid grid-cols-4 gap-12 md:gap-32 text-center w-full">
+      <div className="w-full max-w-7xl  px-4 z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-cente ">
           <Step number="01" label="Strategy & Planning" />
           <Step number="02" label="Design & Development" />
           <Step number="03" label="Launch & Growth" />
@@ -124,7 +135,7 @@ const PortfolioSection = () => {
 const Step = ({ number, label }) => (
   <div className="flex flex-col items-center">
     <span className="text-[#ff5500] font-extrabold text-sm mb-1">#{number}</span>
-    <span className="text-gray-400 text-xs md:text-sm whitespace-nowrap">
+    <span className="text-gray-400 text-xs md:text-sm whitespace-nowrap uppercase tracking-wider font-semibold">
       {label}
     </span>
   </div>
