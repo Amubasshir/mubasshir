@@ -1,11 +1,19 @@
-import React from 'react';
+import Link from 'next/link'
+import React from 'react'
+import AnimatedButton from './AnimatedButton'
+
 
 const About = () => {
   return (
-    <div className="bg-white flex justify-center items-center italic text-3xl text-blue-500 rounded-t-3xl py-8 px-4 shadow-md w-full h-screen relative">
-      About
-    </div>
-  );
-};
+    <div className='w-full h-screen flex justify-center items-center flex-col gap-8 bg-amber-600'>
+      <h1 className='text-4xl font-bold text-white'>About Page</h1>
 
-export default About;
+      {/* নেক্সট জেএস লিংক এবং আমাদের কাস্টম বাটন */}
+      <Link href="/projects">
+        <AnimatedButton text="Projects" width="180px" />
+      </Link>
+    </div>
+  )
+}
+
+export default About

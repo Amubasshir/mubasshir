@@ -1,17 +1,17 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
+import AnimatedButton from './AnimatedButton';
 
 const PortfolioSection = () => {
-  const SPEED = 0.005; 
+  const SPEED = 0.008; 
   const CARD_COUNT = 15; 
   
   const CIRCLE_RADIUS = 1200; 
   const DEPTH_STRENGTH = 3000; 
   const GAP_ANGLE = 0.13; 
 
-  // ✅ Y-AXIS CONFIGURATION (এখানে পরিবর্তন করুন)
-  // ১. ARCH_STRENGTH: এটা বাড়ালে দুই পাশের কার্ড বেশি নিচে নেমে যাবে (বাঁকানো হবে)। ০ দিলে সোজা থাকবে।
+
   const ARCH_STRENGTH = 2; 
   
   // ২. VERTICAL_OFFSET: এটা দিয়ে পুরো স্লাইডারকে উপরে (-) বা নিচে (+) নামাতে পারবেন।
@@ -52,32 +52,41 @@ const PortfolioSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-[#111]  text-white overflow-hidden flex flex-col items-center justify-center py-20 relative font-sans">
-      
+    <section className="min-h-screen bg-[#111]  text-white overflow-hidden flex flex-col items-center justify-center py-10 relative font-sans">
+  {/* ... Fade Masks ... */}
+        <div className="absolute -left-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111]  z-40 pointer-events-none blur-xl " />
+        
+
+        <div className="absolute -right-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111]  z-40 pointer-events-none blur-xl" />
+        {/* ... Header ... */}
       <div className="text-center z-50 mb-4 max-w-3xl px-4">
-             <h4 className="text-[#ff5500] font-bold text-sm md:text-base uppercase tracking-widest mb-4">
+             <h4 className="text-[#ff5500] font-bold text-sm md:text-2xl mb-4">
                Behind the Designs
              </h4>
-             <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+             <h2 className="text-4xl md:text-5xl font-bold mb-6 ">
                Curious What Else I’ve <br className="hidden md:block" /> Created?
              </h2>
-             <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+             <p className="text-gray-400 text-sm  max-w-2xl mx-auto mb-10 leading-relaxed font-light">
                Explore more brand identities, packaging, and digital design work in my extended portfolio.
              </p>
            </div>
-           {/* TOP BUTTON */}
-           <div className="z-50 -mb-12">
-             <button className="group bg-white text-black pl-6 pr-2 py-2 rounded-full font-bold text-sm flex items-center gap-4 hover:scale-105 transition shadow-lg">
-               <span>See more Projects</span>
-               <div className="bg-[#ff5500] text-white p-2 rounded-full group-hover:rotate-45 transition">
-                 <ArrowRight size={18} strokeWidth={3} />
-               </div>
-             </button>
-           </div>
+      {/* TOP BUTTON */}
+      <div className='-mb-30'>
+          <AnimatedButton
+        text="Get in touch" 
+        width="180px" 
+        className="mt-4">
+        
+        </AnimatedButton>
 
+      </div>
+    
       <div className="relative w-full max-w-[100vw] h-[550px] md:h-[650px] flex items-center justify-center perspective-[700px]">
         
-        {/* ... Fade Masks ... */}
+      
+       
+
+       
 
         <div className="relative w-full h-full flex items-center justify-center transform-style-3d">
           {cards.map((card, index) => {
@@ -105,7 +114,7 @@ const PortfolioSection = () => {
             // Scale
             const scale = 0.5 + (Math.pow(dist, 1.5) * 0.05);
 
-            const opacity = dist < 5.7 ? 5 :5;
+            const opacity = dist < 4.5 ? 1 : 0;
             const zIndex = 100 + Math.floor(z); 
 
             return (
@@ -139,8 +148,8 @@ const PortfolioSection = () => {
       </div>
 
       {/* ... Footer ... */}
-         <div className="w-full max-w-7xl  px-4 z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-cente ">
+         <div className="w-full max-w-7xl  px-4 z-10 -mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-4  text-cente ">
           <Step number="01" label="Strategy & Planning" />
           <Step number="02" label="Design & Development" />
           <Step number="03" label="Launch & Growth" />
@@ -153,8 +162,8 @@ const PortfolioSection = () => {
 
 const Step = ({ number, label }) => (
   <div className="flex flex-col items-center">
-    <span className="text-[#ff5500] font-extrabold text-sm mb-1">#{number}</span>
-    <span className="text-gray-400 text-xs md:text-sm whitespace-nowrap uppercase tracking-wider font-semibold">
+    <span className="text-[#ff5500] font-extrabold text-lg mb-1"># <span className='text-white'>{number}</span></span>
+    <span className="text-white text-xs md:text-[16px] whitespace-nowrap tracking-wider font-normal">
       {label}
     </span>
   </div>
