@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, ArrowRight } from 'lucide-react';
-import AnimatedButton from './AnimatedButton';
+import AnimatedButton from '@/components/AnimatedButton';
 import Link from 'next/link';
+
 
 const faqs = [
   {
@@ -29,7 +30,7 @@ const faqs = [
   }
 ];
 
-const FAQItem = ({ question, answer, isOpen, toggle }) => {
+const FAQItem4 = ({ question, answer, isOpen, toggle }) => {
   return (
     <div 
       onClick={toggle}
@@ -75,7 +76,7 @@ const FAQItem = ({ question, answer, isOpen, toggle }) => {
   );
 };
 
-const FAQSection = () => {
+const FAQSection4 = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const handleToggle = (index) => {
@@ -119,7 +120,7 @@ const FAQSection = () => {
         {/* --- Right Column: Accordion (50% Width) --- */}
         <div className="w-full">
           {faqs.map((faq, index) => (
-            <FAQItem 
+            <FAQItem4 
               key={index}
               question={faq.question}
               answer={faq.answer}
@@ -134,4 +135,4 @@ const FAQSection = () => {
   );
 };
 
-export default FAQSection;
+export default FAQSection4;

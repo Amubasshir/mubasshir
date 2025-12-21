@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, ArrowRight } from 'lucide-react';
+import { Plus, ArrowRight, Link } from 'lucide-react';
 import AnimatedButton from './AnimatedButton';
-import Link from 'next/link';
 
 const faqs = [
   {

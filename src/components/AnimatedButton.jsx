@@ -3,12 +3,12 @@ import { ArrowRight } from 'lucide-react';
 
 const AnimatedButton = ({ text = "See more Projects", width = "220px", onClick }) => {
   return (
-    <div className="relative z-50 pointer-events-auto">
+    <div className="relative z-50 pointer-events-auto ">
       {/* মেইন বাটন */}
       <button 
         onClick={onClick}
         style={{ width: width }}
-        className="group relative bg-white p-1 rounded-full flex items-center overflow-hidden h-[46px] transition-all duration-700 ease-in-out cursor-pointer shadow-sm border border-gray-100"
+        className="group relative bg-white p-1  rounded-full flex items-center overflow-hidden h-[46px] transition-all duration-700 ease-in-out cursor-pointer shadow-sm border border-gray-100"
       >
         
         {/* ১. স্লাইডিং অরেঞ্জ ব্যাকগ্রাউন্ড: transition-all নিশ্চিত করে এটি দুই দিকেই স্মুথলি চলবে */}
@@ -27,7 +27,7 @@ const AnimatedButton = ({ text = "See more Projects", width = "220px", onClick }
           </div>
 
           {/* ৪. টেক্সট: এটিও দুই দিকেই সমানভাবে অ্যানিমেটেড হবে */}
-          <span className="text-black group-hover:text-white font-bold text-[16px]  transition-all duration-700 ease-in-out transform translate-x-[-12px] group-hover:translate-x-4 whitespace-nowrap tracking-tight">
+          <span className="text-black group-hover:text-white font-bold text-[16px]  transition-all duration-700 ease-in-out transform translate-x-[-12px] group-hover:translate-x-4 whitespace-nowrap tracking-tight ">
             {text}
           </span>
 

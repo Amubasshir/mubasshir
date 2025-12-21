@@ -1,10 +1,11 @@
 'use client';
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import AnimatedButton from './AnimatedButton';
+import AnimatedButton from '@/components/AnimatedButton';
 import Link from 'next/link';
 
-const BrandHero = () => {
+
+const BrandHeroDetails5 = () => {
   const containerRef = useRef(null);
 
   // --- Scroll Logic ---
@@ -37,7 +38,7 @@ const BrandHero = () => {
         className="absolute inset-0 w-full h-full will-change-transform"
       >
         <img 
-          src="https://framerusercontent.com/images/8AZ1WFlBsZld4k6TGK4kX3BhQxA.png?scale-down-to=2048" 
+          src="https://framerusercontent.com/images/elLOZyvvu6OMXXr3qe1u4DI5jn4.png?scale-down-to=1024" 
           alt="Brand Model" 
           className="w-full h-full object-cover"
         />
@@ -79,4 +80,4 @@ const BrandHero = () => {
   );
 };
 
-export default BrandHero;
+export default BrandHeroDetails5;

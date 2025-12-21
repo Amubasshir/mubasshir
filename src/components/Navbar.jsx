@@ -83,9 +83,11 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        <div className="mt-2">
-            <AnimatedButton text="Get in touch" width="160px" />
-        </div>
+       
+                    <Link href="/Contacts" className="mt-2"> 
+                    <AnimatedButton text="Get in touch" width="160px" />
+                  </Link>
+      
       </div>
 
       {/* --- MOBILE HAMBURGER BUTTON --- */}
@@ -145,7 +147,9 @@ const Navbar = () => {
                 className="pt-6"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <AnimatedButton text="Get in touch" width="200px" />
+                <Link href="/contacts"> 
+                    <AnimatedButton text="Get in touch" width="200px" />
+                  </Link>
               </motion.div>
             </motion.div>
 

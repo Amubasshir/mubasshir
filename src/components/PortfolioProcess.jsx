@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import AnimatedButton from './AnimatedButton';
+import Link from 'next/link';
 
 const PortfolioSection = () => {
   const SPEED = 0.008; 
@@ -71,15 +72,15 @@ const PortfolioSection = () => {
              </p>
            </div>
       {/* TOP BUTTON */}
-      <div className='-mb-30'>
+     <Link href="/projects" className='-mb-30'>
           <AnimatedButton
-        text="Get in touch" 
-        width="180px" 
+        text="See More Projects" 
+        width="220px" 
         className="mt-4">
         
         </AnimatedButton>
 
-      </div>
+      </Link>
     
       <div className="relative w-full max-w-[100vw] h-[550px] md:h-[650px] flex items-center justify-center perspective-[700px]">
         

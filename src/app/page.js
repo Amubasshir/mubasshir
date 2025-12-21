@@ -1,7 +1,8 @@
-import About from "@/components/About";
+
 import HeroSection from "@/components/HeroSection";
 import PortfolioProcess from "@/components/PortfolioProcess";
 import ProcessSection from "@/components/ProcessSection";
+import TestimonialGrid from "@/components/TestimonialGrid";
 import Image from "next/image";
 
 
@@ -12,7 +13,8 @@ export default function Home() {
       <HeroSection />
       <ProcessSection></ProcessSection>
       <PortfolioProcess></PortfolioProcess>
-      <About></About>
+      <TestimonialGrid/>
+     
      
     </>
   );

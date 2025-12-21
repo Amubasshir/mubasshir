@@ -2,13 +2,16 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import AnimatedButton from './AnimatedButton';
-import Navbar from './Navbar';
+
+
+import AnimatedButton from '@/components/AnimatedButton';
+import Navbar from '@/components/Navbar';
+import Link from 'next/link';
 
 // --- Reusable Button Component (Matches your design) ---
 
 
-const ProjectDetailHero = () => {
+const ProjectDetailHero3 = () => {
   const containerRef = useRef(null);
 
   // --- Scroll Parallax Logic ---
@@ -33,7 +36,7 @@ const ProjectDetailHero = () => {
         >
           {/* Image: White Sweatshirt with Shadow (Unsplash match) */}
           <img 
-            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2500&auto=format&fit=crop" 
+            src="https://framerusercontent.com/images/JOqvhPEZu18F6qYfiLZFYW4RiBo.png?scale-down-to=1024" 
             alt="Orange Blox Project" 
             className="w-full h-full object-cover"
           />
@@ -110,10 +113,12 @@ const ProjectDetailHero = () => {
               animate={{ opacity: 1, x: 0 }} 
               transition={{ delay: 0.7 }}
             >
-              <AnimatedButton 
+              <Link href="/Contacts">
+               <AnimatedButton 
             text="Get in touch" 
             width="160px"
             />
+              </Link>
             </motion.div>
 
           </div>
@@ -125,4 +130,4 @@ const ProjectDetailHero = () => {
   );
 };
 
-export default ProjectDetailHero;
+export default ProjectDetailHero3;

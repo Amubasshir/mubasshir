@@ -21,5 +21,5 @@ const ProjectsPage = () => {
   );
 };
 
-// এই লাইনটি অবশ্যই থাকতে হবে, অন্যথায় "Default export not found" এরর আসবে
+
 export default ProjectsPage;

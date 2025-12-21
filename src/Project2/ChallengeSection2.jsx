@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const ChallengeSection = () => {
+const ChallengeSection2 = () => {
   return (
     <section className="bg-[#0a0a0a] text-white py-20 px-6 md:px-12 font-sans">
       <div className="max-w-[1400px] mx-auto">
@@ -48,7 +48,7 @@ const ChallengeSection = () => {
           className="relative w-full h-[50vh] md:h-screen overflow-hidden rounded-[2.5rem]"
         >
           <img 
-            src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=2600&auto=format&fit=crop" 
+            src="https://framerusercontent.com/images/VknMOsFVXWhKJ6iX3FFW16ahY.png" 
             alt="Tote Bag Challenge" 
             className="w-full h-full object-cover"
           />
@@ -62,4 +62,4 @@ const ChallengeSection = () => {
   );
 };
 
-export default ChallengeSection;
+export default ChallengeSection2;

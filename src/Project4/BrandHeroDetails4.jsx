@@ -1,9 +1,11 @@
 'use client';
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import AnimatedButton from './AnimatedButton';
+import AnimatedButton from '@/components/AnimatedButton';
+import Link from 'next/link';
 
-const BrandHeroDetails = () => {
+
+const BrandHeroDetails4 = () => {
   const containerRef = useRef(null);
 
   // --- Scroll Logic ---
@@ -65,17 +67,17 @@ const BrandHeroDetails = () => {
         </p>
 
         {/* CTA Button */}
-        <div className="relative z-30">
+        <Link href="/Contacts" className="relative z-30">
           <AnimatedButton
             text="Get in touch" 
             width="180px" 
             className="cursor-pointer"
           />
-        </div>
+        </Link>
       </motion.div>
 
     </div>
   );
 };
 
-export default BrandHeroDetails;
+export default BrandHeroDetails4;

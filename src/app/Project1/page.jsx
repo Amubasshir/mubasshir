@@ -1,12 +1,13 @@
-import BrandHeroDetails from '@/components/BrandHeroDetails';
-import ChallengeSection from '@/components/ChallengeSection';
-import DescriptionSection from '@/components/DescriptionSection';
+
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
-import GoalSection from '@/components/GoalSection';
-import ProjectDetailHero from '@/components/ProjectDetailHero';
-import ProjectsDetails from '@/components/ProjectsDetails';
-import ResultSection from '@/components/ResultSection';
+import BrandHeroDetails from '@/Project1/BrandHeroDetails';
+import ChallengeSection from '@/Project1/ChallengeSection';
+import DescriptionSection from '@/Project1/DescriptionSection';
+import GoalSection from '@/Project1/GoalSection';
+import ProjectDetailHero from '@/Project1/ProjectDetailHero';
+import ProjectsDetails from '@/Project1/ProjectsDetails';
+import ResultSection from '@/Project1/ResultSection';
 import React from 'react';
 
 

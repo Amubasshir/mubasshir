@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import AnimatedButton from './AnimatedButton';
+import Link from 'next/link';
 
 const ProjectSelectedWork = () => {
   return (
@@ -45,7 +46,7 @@ const ProjectSelectedWork = () => {
                 Let's Build Something Meaningful Together
               </span>
               
-               <button className="group relative bg-[#ff5500] p-1 rounded-full flex items-center overflow-hidden lg:min-w-[180px] min-w-full h-[44px] transition-all duration-700 ease-in-out cursor-pointer">
+               <Link href="/Contacts" className="group relative bg-[#ff5500] p-1 rounded-full flex items-center overflow-hidden lg:min-w-[180px] min-w-full h-[44px] transition-all duration-700 ease-in-out cursor-pointer">
                       
                       {/* অরেঞ্জ বিজি স্লাইডার */}
                       <span className="absolute right-1 top-1 bottom-1 w-[36px] bg-white group-hover:w-[calc(100%-8px)] transition-all duration-700 ease-in-out z-10 rounded-full"></span>
@@ -67,7 +68,7 @@ const ProjectSelectedWork = () => {
                         </span>
               
                       </div>
-                    </button>
+                    </Link>
             </div>
           </motion.div>
         </div>

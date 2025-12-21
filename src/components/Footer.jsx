@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { Facebook, Instagram, Youtube, ArrowRight } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
 
 const Footer = () => {
   const containerRef = useRef(null);
@@ -48,7 +49,7 @@ const Footer = () => {
             </p>
 
             <div className="pt-2">
-              <button className="group relative bg-[#242424] p-1 rounded-full flex items-center overflow-hidden min-w-[160px] h-[44px] transition-all duration-700 ease-in-out cursor-pointer">
+              <Link href="/Contacts" className="group relative bg-[#242424] p-1 rounded-full flex items-center overflow-hidden min-w-[160px] h-[44px] transition-all duration-700 ease-in-out cursor-pointer">
                 <span className="absolute right-1 top-1 bottom-1 w-[36px] bg-[#ff5500] group-hover:w-[calc(100%-8px)] transition-all duration-700 ease-in-out z-10 rounded-full"></span>
                 <div className="relative z-20 w-full h-full flex items-center justify-center">
                   <div className="absolute right-0 w-[36px] h-[36px] flex items-center justify-center text-black bg-[#ff5500] group-hover:bg-transparent rounded-full transition-all duration-700 ease-in-out transform group-hover:-translate-x-[120px]">
@@ -58,7 +59,7 @@ const Footer = () => {
                     Get in touch
                   </span>
                 </div>
-              </button>
+              </Link>
             </div>
 
             <div className="pt-8 text-gray-500 text-sm">© 2025 Copyright</div>
