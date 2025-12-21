@@ -206,7 +206,7 @@ const DreamArea = () => {
           </div>
           
           <div className="shrink-0">
-             <ViewButton href="/all-projects" />
+             <ViewButton href="/DreamArea" />
           </div>
         </div>
 

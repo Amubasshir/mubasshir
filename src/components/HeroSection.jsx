@@ -64,7 +64,7 @@ const HeroSection = () => {
   return (
     <>
       <div className="h-screen w-full"></div>
-
+ 
       <motion.div 
         ref={containerRef}
         onMouseMove={handleMouseMove}
