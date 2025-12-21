@@ -66,7 +66,7 @@ const PortfolioSection = () => {
              <h2 className="text-4xl md:text-5xl font-bold mb-6 ">
                Curious What Else I’ve <br className="hidden md:block" /> Created?
              </h2>
-             <p className="text-gray-400 text-sm  max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+             <p className="text-[#757575] text-sm  max-w-2xl mx-auto mb-10 leading-relaxed font-light">
                Explore more brand identities, packaging, and digital design work in my extended portfolio.
              </p>
            </div>

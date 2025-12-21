@@ -12,6 +12,12 @@ const About = () => {
       <Link href="/projects">
         <AnimatedButton text="Projects" width="180px" />
       </Link>
+      <Link href="/ProjectDetails">
+        <AnimatedButton text="Project Details" width="180px" />
+      </Link>
+      <Link href="/Contacts">
+        <AnimatedButton text="Contact me" width="180px" />
+      </Link>
     </div>
   )
 }

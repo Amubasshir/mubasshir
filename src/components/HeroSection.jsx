@@ -385,15 +385,15 @@ const TestimonialSlider = () => {
           </div>
           
           {/* ✅ FIXED: Applying titleSize dynamically */}
-          <h3 className={`${testimonialData[index].titleSize} tracking-[0.25em] font-medium text-gray-400 uppercase leading-none`}>
+          <h3 className={`${testimonialData[index].titleSize} tracking-[0.25em] font-medium text-[#757575] uppercase leading-none`}>
             {testimonialData[index].title}
           </h3>
           
           {/* ✅ FIXED: Applying nameSize dynamically */}
-          <p className={`${testimonialData[index].nameSize} font-medium mt-2 uppercase tracking-[0.25em] text-gray-400`}>
+          <p className={`${testimonialData[index].nameSize} font-medium mt-2 uppercase tracking-[0.25em] text-[#757575]`}>
             {testimonialData[index].name}
           </p>
-          <p className={`${testimonialData[index].componySize} font-medium mt-2 max-w-xs uppercase tracking-[0.25em] text-gray-400`}>
+          <p className={`${testimonialData[index].componySize} font-medium mt-2 max-w-xs uppercase tracking-[0.25em] text-[#757575]`}>
             {testimonialData[index].compony}
           </p>
         </motion.div>

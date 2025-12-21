@@ -10,11 +10,9 @@ export default function Home() {
     <>
       
       <HeroSection />
-
       <ProcessSection></ProcessSection>
       <PortfolioProcess></PortfolioProcess>
-
-        <About></About>
+      <About></About>
      
     </>
   );

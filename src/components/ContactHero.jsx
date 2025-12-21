@@ -7,7 +7,7 @@ import AnimatedButton from './AnimatedButton';
 import Link from 'next/link';
 import Navbar from './Navbar';
 
-const ProjectHeroSection = () => {
+const ContactHero = () => {
   const containerRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const ProjectHeroSection = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
       ref={containerRef} 
-      className="relative w-full h-screen overflow-hidden bg-[#111] "
+      className="relative w-full h-screen overflow-hidden  z-20"
     >
       
       {/* --- BACKGROUND IMAGE WITH ZOOM ANIMATION --- */}
@@ -37,7 +37,7 @@ const ProjectHeroSection = () => {
           className="w-full h-full "
         >
           <img 
-            src="https://framerusercontent.com/images/c9bQrXGGanXaAH6XnZU2N16W5N0.webp?scale-down-to=2048" 
+            src="https://framerusercontent.com/images/biQoRVvtse3PPRVfJ6WKcQiDyg.png?scale-down-to=1024" 
             alt="Motocross Rider" 
             className="w-full h-full object-cover "
           />
@@ -58,10 +58,10 @@ const ProjectHeroSection = () => {
     {/* Left Side: Big Title */}
     <div className="w-full lg:w-1/2">
       <h4 className="text-[#ff5500] font-bold text-xl md:text-[30px] mb-2 tracking-wide">
-        Selected Work
+        Get in touch
       </h4>
       <h1 className="text-6xl sm:text-8xl md:text-[120px] leading-[0.9] font-bold tracking-tighter">
-        Projects
+        Contact
       </h1>
     </div>
 
@@ -69,11 +69,9 @@ const ProjectHeroSection = () => {
     <div className="w-full lg:w-1/2 flex flex-col lg:items-end">
       <div className="max-w-md">
         <h3 className="text-xl md:text-[30px] font-semibold mb-4 md:mb-6 leading-tight">
-          Real brands, real results
+          Let’s build something great together—start the conversation today.
         </h3>
-        <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-          Take a closer look at how strategy and design come together to build brands that connect and endure.
-        </p>
+        
       </div>
     </div>
 
@@ -83,4 +81,6 @@ const ProjectHeroSection = () => {
   );
 };
 
-export default ProjectHeroSection;
+
+
+export default ContactHero;

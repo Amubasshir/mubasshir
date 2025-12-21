@@ -25,8 +25,8 @@ const Footer = () => {
         style={{ y: yWatermark }}
         className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-full overflow-hidden pointer-events-none z-0 "
       >
-        <h1 className="text-[24vw] font-bold text-white opacity-[0.03] leading-[0.75] text-center tracking-tighter select-none whitespace-nowrap">
-          Folioblox
+        <h1 className="text-[20vw] font-bold text-white opacity-[0.03] leading-[0.75] text-center tracking-tighter select-none whitespace-nowrap">
+          Folioblox®
         </h1>
       </motion.div>
 
@@ -39,7 +39,7 @@ const Footer = () => {
           
           {/* Brand Column */}
           <div className="lg:col-span-6 flex flex-col items-start space-y-6">
-            <h2 className="text-2xl font-bold tracking-tight">Folioblox</h2>
+            <h2 className="text-2xl font-bold tracking-tight">Folioblox®</h2>
             <h3 className="text-[18px] md:text-[20px] font-bold leading-tight">
               Great design should feel invisible.
             </h3>
@@ -108,11 +108,7 @@ const Footer = () => {
         </div>
       </motion.div>
 
-      {/* Made in Framer Badge */}
-      <div className="absolute bottom-4 right-4 z-50 bg-white text-black px-3 py-1.5 rounded-md text-xs font-bold shadow-lg flex items-center gap-2 cursor-pointer hover:bg-gray-200 transition-colors">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="black"><path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"/></svg>
-          Made in Framer
-      </div>
+   
     </footer>
   );
 };

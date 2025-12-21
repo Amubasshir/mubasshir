@@ -161,7 +161,7 @@ const SliderCard = () => {
               <h3 className="text-sm font-bold tracking-widest text-gray-500 uppercase">
                 {slides[currentSlide].title}
               </h3>
-              <h2 className="text-2xl font-black uppercase text-gray-400">
+              <h2 className="text-2xl font-black uppercase text-[#757575]">
                 {slides[currentSlide].subtitle}
               </h2>
               <p className="text-sm text-gray-600 max-w-xs mx-auto">

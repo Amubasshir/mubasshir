@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 const ProjectsPage = () => {
   return (
     <main>
-      {/* এখানে আপনার কম্পোনেন্টটি কল করুন */}
+    
       <ProjectHeroSection />
       <ProjectSelectedWork />
       <DreamArea/>
