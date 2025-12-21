@@ -144,7 +144,7 @@ const TestimonialGrid = () => {
   const col3 = testimonials.slice(6, 9);
 
   return (
-    <section className="bg-[#0a0a0a] py-24 px-6 relative overflow-hidden font-sans">
+    <section className="bg-[#111] py-24 px-6 relative overflow-hidden font-sans">
       {/* Background Decorative Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#ff5500]/10 rounded-full blur-[120px] -z-10 animate-pulse"></div>
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -z-10"></div>
