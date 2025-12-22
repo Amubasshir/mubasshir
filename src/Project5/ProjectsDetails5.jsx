@@ -66,7 +66,7 @@ const ViewButton = ({ href = '#' }) => (
 
 const ProjectsDetails5 = () => {
   return (
-    <section className="bg-[#111] rounded-b-[80px] text-white min-h-screen px-6 md:px-12 font-sans pb-20 relative z-10 py-40 -mt-20">
+    <section className="bg-[#111] rounded-b-[80px] text-white min-h-screen px-6 md:px-12 font-sans pb-20 relative z-[1] py-40 -mt-20 ">
       <div className="max-w-[1400px] mx-auto">
         
         {/* --- Header Section --- */}

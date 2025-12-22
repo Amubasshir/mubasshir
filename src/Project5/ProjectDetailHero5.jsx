@@ -26,7 +26,7 @@ const ProjectDetailHero5 = () => {
   const yText = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#111] font-sans z-10 rounded-b-[70px]">
+    <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#111] font-sans z-[2] rounded-b-[70px]">
       
       {/* --- BACKGROUND LAYER --- */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -45,9 +45,7 @@ const ProjectDetailHero5 = () => {
         </motion.div>
       </div>
 
-      {/* --- NAVBAR --- */}
-      <Navbar></Navbar>
-
+     
       {/* --- MAIN CONTENT --- */}
       <motion.div 
         style={{ y: yText }}

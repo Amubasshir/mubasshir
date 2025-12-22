@@ -44,8 +44,7 @@ const ProjectDetailHero4 = () => {
         </motion.div>
       </div>
 
-      {/* --- NAVBAR --- */}
-      <Navbar></Navbar>
+      
 
       {/* --- MAIN CONTENT --- */}
       <motion.div 

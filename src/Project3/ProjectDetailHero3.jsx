@@ -45,9 +45,7 @@ const ProjectDetailHero3 = () => {
         </motion.div>
       </div>
 
-      {/* --- NAVBAR --- */}
-      <Navbar></Navbar>
-
+   
       {/* --- MAIN CONTENT --- */}
       <motion.div 
         style={{ y: yText }}

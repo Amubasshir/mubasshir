@@ -84,7 +84,7 @@ const FAQSection2 = () => {
   };
 
   return (
-    <section className="bg-[#111] text-white py-24 px-6 md:px-12 font-sans rounded-b-[70px] relative z-10">
+    <section className="bg-[#111] text-white py-24 px-6 md:px-12 font-sans rounded-b-[70px] relative z-[1]">
       
       {/* 
          ✅ CHANGE: grid-cols-1 (Mobile) | lg:grid-cols-2 (Desktop Equal Split)

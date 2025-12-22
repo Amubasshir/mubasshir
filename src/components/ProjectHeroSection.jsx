@@ -47,9 +47,6 @@ const ProjectHeroSection = () => {
         </motion.div>
       </div>
 
-      {/* --- NAVBAR --- */}
-      
-      <Navbar></Navbar>
 
       {/* --- HERO CONTENT (FIXED POSITION, NO SCROLL MOVEMENT) --- */}
      <div className="absolute bottom-0 w-full z-10 px-6 md:px-12 pb-12 md:pb-20 text-white">

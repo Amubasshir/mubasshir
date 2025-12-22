@@ -44,8 +44,7 @@ const DreamProjectDetailHero = () => {
         </motion.div>
       </div>
 
-      {/* --- NAVBAR --- */}
-      <Navbar></Navbar>
+     
 
       {/* --- MAIN CONTENT --- */}
       <motion.div 

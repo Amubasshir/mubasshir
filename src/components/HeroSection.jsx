@@ -69,6 +69,7 @@ const HeroSection = () => {
         ref={containerRef}
         onMouseMove={handleMouseMove}
         style={{ opacity }}
+        data-theme="dark"
         // ✅ ADDED: 'cursor-none' to hide default cursor
         className="fixed top-0 left-0 w-full h-screen overflow-hidden flex flex-col items-center justify-start text-gray-300 font-oswald bg-[#0a0a0a] z-0"
       >
