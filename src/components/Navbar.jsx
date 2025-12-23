@@ -5,12 +5,11 @@ import Link from 'next/link';
 
 const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // মোবাইলের জন্য ওপেন স্টেট
+  const [isOpen, setIsOpen] = useState(false);
   const [isDarkBg, setIsDarkBg] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
 
-  // উইন্ডো সাইজ চেক করার জন্য (মোবাইল নাকি ডেস্কটপ)
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -18,7 +17,6 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // ব্যাকগ্রাউন্ড কালার ডিটেকশন (আগের মতোই)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,7 +48,6 @@ const Navbar = () => {
 
   const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
 
-  // ইন্টারেকশন হ্যান্ডলার (মোবাইল ও ডেস্কটপ আলাদা)
   const handleInteractionStart = () => {
     if (!isMobile) setIsHovered(true);
   };
@@ -63,20 +60,18 @@ const Navbar = () => {
     if (isMobile) setIsOpen(!isOpen);
   };
 
-  // কালার লজিক
   const navBgColor = isDarkBg ? 'bg-white' : 'bg-[#1a1a1a]';
   const textColor = isDarkBg ? 'text-black' : 'text-white';
   const eyeBg = isDarkBg ? 'bg-black' : 'bg-white';
   const pupilColor = isDarkBg ? 'bg-white' : 'bg-black';
 
-  // স্টেট লজিক (মোবাইল হলে isOpen, ডেস্কটপ হলে isHovered)
   const isActive = isMobile ? isOpen : isHovered;
 
   return (
     <nav 
       onMouseMove={handleMouseMove}
-      // মোবাইলে মাঝখানে, ডেস্কটপে বামে
-      className={`fixed z-[9999] transition-all duration-500 ${isMobile ? 'top-6 left-1/2 -translate-x-1/2' : 'top-8 left-6'}`}
+      // CHANGE 1: মোবাইলে right-6 ব্যবহার করা হয়েছে
+      className={`fixed z-[9999] transition-all duration-500 ${isMobile ? 'top-3 right-3' : 'top-8 left-6'}`}
     >
       <motion.div
         layout
@@ -84,24 +79,24 @@ const Navbar = () => {
         onMouseEnter={handleInteractionStart}
         onMouseLeave={handleInteractionEnd}
         className={`flex flex-col md:flex-row items-center transition-colors duration-700 ease-in-out shadow-2xl ${navBgColor} rounded-[30px] cursor-pointer overflow-hidden`}
-        // সাইজ অ্যানিমেশন
+        // CHANGE 2: হাইট এবং উইডথ কমানো হয়েছে
         animate={{
-          width: isActive ? (isMobile ? '90vw' : '480px') : '94px',
-          height: isActive && isMobile ? 'auto' : '56px', // 14 * 4 = 56px
-          borderRadius: isActive && isMobile ? '24px' : '9999px'
+          width: isActive ? (isMobile ? '160px' : '480px') : (isMobile ? '80px' : '94px'), // মোবাইলে উইডথ কম
+          height: isActive && isMobile ? 'auto' : (isMobile ? '45px' : '56px'), // মোবাইলে হাইট ৪৫ পিক্সেল
+          borderRadius: isActive && isMobile ? '20px' : '9999px'
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        style={{ padding: isActive && isMobile ? '16px' : '0' }}
+        style={{ padding: isActive && isMobile ? '12px' : '0' }}
       >
-        {/* টপ রো: চোখ এবং (মোবাইল টাইটেল বা স্পেসার) */}
-        <div className={`flex items-center justify-between w-full ${!isMobile ? 'h-14 px-4' : ''}`}>
+        {/* Top Row */}
+        <div className={`flex items-center justify-between w-full ${!isMobile ? 'h-14 px-4' : 'h-full px-3'}`}>
           
           {/* Left Eye */}
           <div className="shrink-0">
-            <Eye mousePos={mousePos} eyeBg={eyeBg} pupilColor={pupilColor} size="large" forceSide={isActive ? 'left' : null} />
+            {/* মোবাইলে চোখের সাইজ একটু ছোট করা হয়েছে 'size' প্রপ দিয়ে */}
+            <Eye mousePos={mousePos} eyeBg={eyeBg} pupilColor={pupilColor} size={isMobile ? "medium" : "large"} forceSide={isActive ? 'left' : null} />
           </div>
 
-          {/* ডেস্কটপ লিংক (পাশাপাশি দেখাবে) */}
           {!isMobile && (
             <motion.div 
               className={`flex items-center justify-center gap-8 font-bold text-[11px] tracking-[0.2em] uppercase overflow-hidden whitespace-nowrap ${textColor}`}
@@ -116,12 +111,12 @@ const Navbar = () => {
             </motion.div>
           )}
 
-           {/* মোবাইল মেনু ইন্ডিকেটর (অপশনাল, শুধু মাঝখানের স্পেস ফিল করার জন্য) */}
+           {/* Mobile Menu Text (Optional) */}
            {isMobile && isActive && (
             <motion.span 
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
-              className={`text-[10px] uppercase tracking-widest font-bold ${textColor}`}
+              className={`text-[9px] uppercase tracking-widest font-bold ${textColor}`}
             >
               Menu
             </motion.span>
@@ -129,20 +124,21 @@ const Navbar = () => {
 
           {/* Right Eye */}
           <div className="shrink-0">
-            <Eye mousePos={mousePos} eyeBg={eyeBg} pupilColor={pupilColor} size="large" forceSide={isActive ? 'right' : null} />
+            <Eye mousePos={mousePos} eyeBg={eyeBg} pupilColor={pupilColor} size={isMobile ? "medium" : "large"} forceSide={isActive ? 'right' : null} />
           </div>
         </div>
 
-        {/* মোবাইল ড্রপডাউন লিংক (নিচে নিচে দেখাবে) */}
+        {/* Mobile Dropdown Links */}
         <AnimatePresence>
           {isMobile && isActive && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className={`flex flex-col items-center gap-6 mt-6 mb-2 font-bold text-[14px] tracking-[0.2em] uppercase w-full ${textColor}`}
+              // CHANGE 3: গ্যাপ এবং মার্জিন কমানো হয়েছে (Compact look)
+              className={`flex flex-col items-center gap-3 mt-4 mb-1 font-bold text-[11px] tracking-[0.15em] uppercase w-full ${textColor}`}
             >
-               <NavLinks mobile />
+               <NavLinks />
             </motion.div>
           )}
         </AnimatePresence>
@@ -151,33 +147,42 @@ const Navbar = () => {
   );
 };
 
-// লিংক কম্পোনেন্ট রিইউজ করার জন্য আলাদা করা হলো
-const NavLinks = ({ mobile }) => (
+const NavLinks = () => (
   <>
-    <Link href="/" className="hover:text-[#ff5500] transition-colors w-full text-center">Home</Link>
-    <Link href="/projects" className="hover:text-[#ff5500] transition-colors w-full text-center">Projects</Link>
-    <Link href="/about" className="hover:text-[#ff5500] transition-colors w-full text-center">About</Link>
-    <Link href="/Contacts" className="hover:text-[#ff5500] transition-colors w-full text-center">Contacts</Link>
+    <Link href="/" className="hover:text-[#ff5500] transition-colors w-full text-center py-1">Home</Link>
+    <Link href="/projects" className="hover:text-[#ff5500] transition-colors w-full text-center py-1">Projects</Link>
+    <Link href="/about" className="hover:text-[#ff5500] transition-colors w-full text-center py-1">About</Link>
+    <Link href="/Contacts" className="hover:text-[#ff5500] transition-colors w-full text-center py-1">Contacts</Link>
   </>
 );
 
 const Eye = ({ mousePos, eyeBg, pupilColor, size, forceSide }) => {
   const [pupil, setPupil] = useState({ x: 0, y: 0 });
   const eyeRef = useRef(null);
-  const dimensions = size === 'small' ? 'w-5 h-5' : 'w-8 h-8';
+  
+  // সাইজিং লজিক আপডেট
+  let dimensions = 'w-8 h-8'; // large (default)
+  let pupilSize = 'w-4 h-5';
+  
+  if (size === 'medium') {
+    dimensions = 'w-6 h-6'; // মোবাইলের জন্য মিডিয়াম সাইজ
+    pupilSize = 'w-3 h-3.5';
+  } else if (size === 'small') {
+    dimensions = 'w-5 h-5';
+    pupilSize = 'w-2 h-2.5';
+  }
 
-  // পিউপিল কালার ক্লাস ঠিক করা (বাগ ফিক্স)
   const pupilBgClass = pupilColor.includes('white') ? 'bg-white' : 'bg-black';
 
   useEffect(() => {
-    if (forceSide === 'left') setPupil({ x: -4, y: 0 });
-    else if (forceSide === 'right') setPupil({ x: 4, y: 0 });
+    if (forceSide === 'left') setPupil({ x: -3, y: 0 });
+    else if (forceSide === 'right') setPupil({ x: 3, y: 0 });
     else if (eyeRef.current) {
       const rect = eyeRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       const angle = Math.atan2(mousePos.y - centerY, mousePos.x - centerX);
-      const distance = 5;
+      const distance = size === 'medium' ? 3 : 5; // সাইজ অনুযায়ী মুভমেন্ট রেঞ্জ
       setPupil({ x: Math.cos(angle) * distance, y: Math.sin(angle) * distance });
     }
   }, [mousePos, forceSide, size]);
@@ -188,7 +193,7 @@ const Eye = ({ mousePos, eyeBg, pupilColor, size, forceSide }) => {
       <motion.div 
         animate={{ x: pupil.x, y: pupil.y }} 
         transition={{ type: 'spring', stiffness: 200, damping: 15 }} 
-        className={`w-4 h-5 rounded-full ${pupilBgClass}`} 
+        className={`${pupilSize} rounded-full ${pupilBgClass}`} 
       />
     </div>
   );
