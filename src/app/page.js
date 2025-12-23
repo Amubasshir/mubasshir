@@ -1,11 +1,13 @@
 
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import MeetYourGuides from "@/components/MeetYourGuides";
+
 import PortfolioProcess from "@/components/PortfolioProcess";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialGrid from "@/components/TestimonialGrid";
+import MeetYourGuides from "@/components/MeetYourGuides";
 import Image from "next/image";
+import Text from "@/components/text";
 
 
 
@@ -14,11 +16,12 @@ export default function Home() {
     <>
      
       <HeroSection />
-      <ProcessSection></ProcessSection>
-      <PortfolioProcess></PortfolioProcess>
+      <ProcessSection/>
+      <PortfolioProcess/>
       <TestimonialGrid />
-         <MeetYourGuides></MeetYourGuides>
-      <Footer></Footer>
+      <MeetYourGuides />
+   
+      <Footer/>
      
      
     </>

@@ -1,171 +1,120 @@
-"use client";
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Play, Sparkles } from 'lucide-react';
+'use client'
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const MeetYourGuides = () => {
-  const guides = [
-    { id: 1, img: "https://framerusercontent.com/images/ODJhWRk5wCb5cybdLgcKObVbwk.png" }, 
-    { id: 2, img: "https://framerusercontent.com/images/O8kqDvhJzW7n3I7u4UE4VTZIEas.png" }, 
-    { id: 3, img: "https://framerusercontent.com/images/JOqvhPEZu18F6qYfiLZFYW4RiBo.png" }, 
-    { id: 4, img: "https://framerusercontent.com/images/k64jd9JZg2STpec9ROq9XmXmzrs.png" }, 
-    { id: 5, img: "https://framerusercontent.com/images/unPTlAup0AJPIvdR2osrG3Qnb0.png" }, 
-    { id: 6, img: "https://framerusercontent.com/images/OAI2GR5QfVyXe6tLG5H5I7BfgDU.png?scale-down-to=1024" }, 
-    { id: 7, img: "https://framerusercontent.com/images/Bwa3k5FBSpRuh5NvcduC8WFKrL0.png" },
-  ];
+const guides = [
+  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400',
+  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400',
+  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400',
+  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400',
+  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400',
+  'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400',
+  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
+];
 
-  const [currentIndex, setCurrentIndex] = useState(3);
+const PremiumArchSlider = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isStacked, setIsStacked] = useState(false);
+  const containerRef = useRef(null);
 
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % guides.length);
-  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + guides.length) % guides.length);
-
-  // --- Animation Variants ---
-  const cardVariants = {
-    // ১. যখন স্ক্রিনের বাইরে থাকবে (Stack/Pile Mode)
-    offscreen: (index) => ({
-      y: 200,             // অনেক নিচে থাকবে
-      x: 0,               // সব মাঝখানে থাকবে
-      rotate: (index - 3) * 10, // হালকা বাঁকা হয়ে স্তূপ আকারে থাকবে
-      scale: 0.5,         // ছোট থাকবে
-      opacity: 0,         // দেখা যাবে না
-      transition: { 
-        duration: 0.4, 
-        ease: "easeInOut" 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const centerOffset = window.innerHeight / 2;
+        const elementCenter = rect.top + rect.height / 2;
+        setIsStacked(Math.abs(elementCenter - centerOffset) > 155);
       }
-    }),
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    // ২. যখন স্ক্রিনে আসবে (Spread/Arch Mode)
-    onscreen: (index) => {
-      // আর্চ ক্যালকুলেশন
-      const diff = index - currentIndex;
-      let displayDiff = diff;
-      if (diff > guides.length / 2) displayDiff -= guides.length;
-      if (diff < -guides.length / 2) displayDiff += guides.length;
-
-      const absDiff = Math.abs(displayDiff);
-      const isVisible = absDiff <= 2.8; 
-      const opacity = isVisible ? (absDiff > 2 ? 1 - (absDiff - 2) * 2 : 1) : 0;
-
-      const angleStep = 14; 
-      const xOffset = 190;
-      const yCurve = 45;
-
-      const rotate = displayDiff * angleStep;
-      const x = displayDiff * xOffset;
-      const y = absDiff * yCurve + (Math.pow(absDiff, 2) * 12); // আর্চ কার্ভ
-
-      return {
-        x: x,
-        y: y,
-        rotate: rotate,
-        scale: 1 - (absDiff * 0.06),
-        opacity: opacity,
-        zIndex: 50 - Math.round(absDiff * 10),
-        transition: { 
-          type: "spring", 
-          stiffness: 60, 
-          damping: 15, 
-          delay: index * 0.05 // স্ট্যাগার এফেক্ট (একটার পর একটা আসবে)
-        }
-      };
+  const handleAction = (type) => {
+    if (type === 'next') {
+      setCurrentIndex((prev) => (prev + 1) % guides.length);
+    } else {
+      setCurrentIndex((prev) => (prev - 1 + guides.length) % guides.length);
     }
   };
 
-  return (
-    <section className="relative w-full min-h-screen bg-[#111] flex flex-col items-center overflow-hidden font-sans pt-16 py-20 pb-20 rounded-b-[70px] z-10">
-      
-      {/* Header with Animation */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }} // বারবার অ্যানিমেশন হবে
-        transition={{ duration: 0.6 }}
-        className="text-center z-10 px-4 mb-6 max-w-2xl mx-auto"
-      >
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.3em] mb-4 italic">
-          NOT JUST ANOTHER AI
-        </p>
-        <h1 className="text-5xl md:text-6xl font-serif font-medium text-[#fff] mb-5">
-          Meet your AI guide
-        </h1>
-        <p className="text-gray-500 text-[15px] leading-relaxed max-w-xl mx-auto">
-          Every guide brings a unique style and is here to listen, lift you up, and help you grow.
-        </p>
-      </motion.div>
+  const visibleCards = useMemo(() => {
+    // রেঞ্জ ৩ করা হয়েছে যাতে অতিরিক্ত কার্ড স্ক্রিনের বাইরে মুভ না করে
+    const range = 3; 
+    const cards = [];
+    for (let i = -range; i <= range; i++) {
+      let index = (currentIndex + i + guides.length) % guides.length;
+      cards.push({
+        url: guides[index],
+        offset: i,
+        cardIndex: index 
+      });
+    }
+    return cards;
+  }, [currentIndex]);
 
-      {/* Slider Section */}
-      <div className="relative w-full h-[480px] flex justify-center items-start mt-4">
-        <div className="relative w-full max-w-5xl flex justify-center items-center">
-          {guides.map((guide, index) => (
-            <motion.div
-              key={guide.id}
-              custom={index}
-              
-              // ✅ অ্যানিমেশন স্টেট কনফিগারেশন
-              initial="offscreen"      // শুরুতে স্তূপ হয়ে থাকবে
-              whileInView="onscreen"   // স্ক্রিনে আসলে ছড়িয়ে যাবে
-              viewport={{ once: false, amount: 0.3 }} // 30% দেখা গেলেই ট্রিগার হবে, বারবার হবে
-              variants={cardVariants}  // ভেরিয়েন্ট ব্যবহার করা হয়েছে
-              
-              className="absolute top-5 origin-bottom shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] bg-white overflow-hidden border-[2px] border-white rounded-[32px]"
-              style={{
-                width: '235px',
-                height: '345px',
-              }}
-            >
-              <img
-                src={guide.img}
-                alt={`Guide ${guide.id}`}
-                className="w-full h-full object-cover select-none pointer-events-none"
-              />
-              
-            
-            </motion.div>
-          ))}
-        </div>
+  return (
+    <div ref={containerRef} className="bg-[#111] min-h-screen flex flex-col items-center pt-20 overflow-hidden select-none font-sans text-white relative">
+      
+      <div className={`text-center z-[110] mb-55 transition-all duration-1000 ${isStacked ? 'opacity-0 scale-90' : 'opacity-100'}`}>
+        <p className="text-[#FF5C00] text-[10px] font-bold uppercase tracking-[0.4em] mb-2">Hybrid Gaming Engine</p>
+        <h2 className="text-5xl font-black tracking-tighter uppercase leading-none">All Heroes</h2>
       </div>
 
-      {/* Navigation Buttons */}
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        className="relative z-50 flex gap-4 mt-[-50px] mb-12"
-      >
-        <button onClick={handlePrev} className="w-11 h-11 bg-white text-orange-500 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
-          <ChevronLeft size={22} />
-        </button>
-        <button onClick={handleNext} className="w-11 h-11 bg-white text-orange-500 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
-          <ChevronRight size={22} />
-        </button>
-      </motion.div>
+      <div className="relative w-full h-[-600px] flex items-center justify-center -mt-56">
+        
+        <div className="absolute bottom-[-1150px] flex items-center justify-center w-full pb-36">
+          {visibleCards.map((card) => {
+            const isCenter = card.offset === 0;
+            const isEdge = Math.abs(card.offset) === 3; // একদম ধারের কার্ড
+            
+            const angle = isStacked ? (card.offset * 8) : (card.offset * 26); 
+            const translateY = isStacked ? (-940 + Math.abs(card.offset) * 8) : -720;
+            const scale = isStacked ? (1 - Math.abs(card.offset) * 0.04) : 1;
 
-      {/* Footer Content */}
-      {/* <div className="max-w-6xl px-8 text-center z-10 pt-5">
-        <h2 className="text-2xl font-bold text-[#1a1a1a] mb-12">Empathy on demand</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-14 text-left">
-          <FeatureItem title="Always remembers" desc="Every insight and breakthrough is saved, so your guide can track your progress." />
-          <FeatureItem title="Always there for you, 24/7" desc="Your guides work around the clock, spotting patterns and stepping in exactly when needed." />
-          <FeatureItem title="Reads you instantly" desc="With advanced emotional tracking, your guide responds with empathy and care." />
+            return (
+              <div
+                key={card.cardIndex} 
+                className="absolute transition-all duration-[900ms] ease-[cubic-bezier(0.2, 1, 0.3, 1)]"
+                style={{
+                  transform: `rotate(${angle}deg) translateY(${translateY}px) scale(${scale})`,
+                  transformOrigin: 'center center',
+                  zIndex: 100 - Math.abs(card.offset),
+                  // ধারের কার্ডগুলো মুভ করার সময় যাতে হুট করে দেখা না যায়, সেজন্য অপাসিটি কন্ট্রোল
+                  opacity: isEdge ? 0 : 1, 
+                  visibility: isEdge ? 'hidden' : 'visible',
+                  pointerEvents: isCenter ? 'auto' : 'none',
+                }}
+              >
+                <div 
+                  className="relative w-[260px] h-[420px] rounded-[5px] overflow-hidden shadow-2xl border border-white/10 bg-[#050505]"
+                >
+                  <img 
+                    src={card.url} 
+                    alt="Hero" 
+                    className="w-full h-full object-cover" 
+                  />
+                  <div className={`absolute inset-0 bg-black/40 transition-opacity duration-1000 ${isStacked && !isCenter ? 'opacity-100' : 'opacity-0'}`} />
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </div> */}
-    </section>
+
+        <div className={`absolute bottom-[-580px] flex gap-14 z-[120] transition-all duration-700 ${isStacked ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <button onClick={() => handleAction('prev')} className="w-16 h-16 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center backdrop-blur-md active:scale-75 transition-all hover:bg-[#FF5C00]">
+            <ChevronLeft size={35} />
+          </button>
+          
+          <button onClick={() => handleAction('next')} className="w-16 h-16 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center backdrop-blur-md active:scale-75 transition-all hover:bg-[#FF5C00]">
+            <ChevronRight size={35} />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
-const FeatureItem = ({ title, desc }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: false }}
-    className="flex flex-col gap-2"
-  >
-    <div className="flex items-center gap-2">
-      <Sparkles className="w-4 h-4 text-orange-400 fill-current" />
-      <h3 className="font-bold text-[16px] text-gray-900 leading-tight">{title}</h3>
-    </div>
-    <p className="text-gray-500 text-[13.5px] leading-relaxed pl-6">{desc}</p>
-  </motion.div>
-);
-
-export default MeetYourGuides;
+export default PremiumArchSlider;

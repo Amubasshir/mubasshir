@@ -14,7 +14,7 @@ const Footer = () => {
 
   const yContent = useTransform(scrollYProgress, [0, 1], [-100, 0]);
   const yWatermark = useTransform(scrollYProgress, [0, 1], [-200, 0]);
-
+// bg-[#050505]
   return (
     <footer 
       ref={containerRef} 
