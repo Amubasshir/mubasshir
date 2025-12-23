@@ -58,7 +58,7 @@ const PremiumArchSlider = () => {
   return (
     <div ref={containerRef} className="bg-[#111] min-h-screen flex flex-col items-center pt-20 overflow-hidden select-none font-sans text-white relative">
       
-      <div className={`text-center z-[110] mb-55 transition-all duration-1000 ${isStacked ? 'opacity-0 scale-90' : 'opacity-100'}`}>
+      <div className={`text-center z-[110] mb-32 transition-all duration-1000 ${isStacked ? 'opacity-0 scale-90' : 'opacity-100'}`}>
         <p className="text-[#ff5500] font-bold text-sm md:text-2xl mb-4">Hybrid Gaming Engine</p>
         <h2 className="text-4xl md:text-5xl font-bold mb-6">All Heroes</h2>
       </div>
@@ -104,11 +104,11 @@ const PremiumArchSlider = () => {
         </div>
 
         <div className={`absolute bottom-[-580px] flex gap-14 z-[120] transition-all duration-700 ${isStacked ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-          <button onClick={() => handleAction('prev')} className="w-16 h-16 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center backdrop-blur-md active:scale-75 transition-all hover:bg-[#FF5C00]">
+          <button onClick={() => handleAction('prev')} className="w-12 h-12 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center backdrop-blur-md active:scale-75 transition-all hover:bg-[#FF5C00]">
             <ChevronLeft size={35} />
           </button>
           
-          <button onClick={() => handleAction('next')} className="w-16 h-16 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center backdrop-blur-md active:scale-75 transition-all hover:bg-[#FF5C00]">
+          <button onClick={() => handleAction('next')} className="w-12 h-12 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center backdrop-blur-md active:scale-75 transition-all hover:bg-[#FF5C00]">
             <ChevronRight size={35} />
           </button>
         </div>
