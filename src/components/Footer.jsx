@@ -18,7 +18,7 @@ const Footer = () => {
   return (
     <footer 
       ref={containerRef} 
-      className="relative bg-[#050505] text-white -mt-10 pt-40 pb-30 overflow-hidden font-sans"
+      className="relative  text-white -mt-10 pt-40 pb-30 overflow-hidden font-sans"
     >
       
       {/* --- BACKGROUND WATERMARK --- */}
