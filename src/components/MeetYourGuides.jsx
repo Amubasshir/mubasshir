@@ -59,8 +59,8 @@ const PremiumArchSlider = () => {
     <div ref={containerRef} className="bg-[#111] min-h-screen flex flex-col items-center pt-20 overflow-hidden select-none font-sans text-white relative">
       
       <div className={`text-center z-[110] mb-55 transition-all duration-1000 ${isStacked ? 'opacity-0 scale-90' : 'opacity-100'}`}>
-        <p className="text-[#FF5C00] text-[10px] font-bold uppercase tracking-[0.4em] mb-2">Hybrid Gaming Engine</p>
-        <h2 className="text-5xl font-black tracking-tighter uppercase leading-none">All Heroes</h2>
+        <p className="text-[#ff5500] font-bold text-sm md:text-2xl mb-4">Hybrid Gaming Engine</p>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6">All Heroes</h2>
       </div>
 
       <div className="relative w-full h-[-600px] flex items-center justify-center -mt-56">

@@ -151,28 +151,57 @@ const TestimonialGrid = () => {
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-[#ff5500] font-bold tracking-[0.2em] uppercase text-xs bg-[#ff5500]/10 px-4 py-2 rounded-full">
+          <span className="text-[#ff5500] font-bold text-sm md:text-2xl mb-4">
             Global Feedback
           </span>
-          <h2 className="text-4xl md:text-6xl font-black text-white mt-6 tracking-tight">
-            Reviews that <br/> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff5500] to-[#ffa500]">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Reviews that
+           
               make me blush
-            </span>
+            
           </h2>
         </div>
 
-        {/* The Scrolling Grid */}
+        {/* 
+           UPDATED GRID LOGIC:
+           1. grid-cols-1 (Mobile)
+           2. md:grid-cols-2 (Tablet)
+           3. lg:grid-cols-3 (Desktop)
+        */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 h-[700px] overflow-hidden relative"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 h-[700px] overflow-hidden relative"
           style={{
             maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
             WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)'
           }}
         >
-          <TestimonialColumn items={col1} speed={30} direction="up" />
-          <TestimonialColumn items={col2} speed={95} direction="up" />
-          <TestimonialColumn items={col3} speed={30} direction="down" />
+          {/* 
+            LEFT COLUMN (Col 1): 
+            - Hidden on Mobile 
+            - Block (Visible) on Tablet & Desktop 
+          */}
+          <div className="hidden md:block h-full">
+            <TestimonialColumn items={col1} speed={30} direction="up" />
+          </div>
+
+          {/* 
+            MIDDLE COLUMN (Col 2): 
+            - Block (Visible) on Mobile
+            - Hidden on Tablet
+            - Block (Visible) on Desktop
+          */}
+          <div className="block md:hidden lg:block h-full">
+            <TestimonialColumn items={col2} speed={95} direction="up" />
+          </div>
+
+          {/* 
+            RIGHT COLUMN (Col 3): 
+            - Hidden on Mobile 
+            - Block (Visible) on Tablet & Desktop 
+          */}
+          <div className="hidden md:block h-full">
+            <TestimonialColumn items={col3} speed={30} direction="down" />
+          </div>
         </div>
       </div>
 
