@@ -103,7 +103,7 @@ const PremiumArchSlider = () => {
           })}
         </div>
 
-        <div className={`absolute bottom-[-580px] flex gap-14 z-[120] transition-all duration-700 ${isStacked ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <div className={`absolute bottom-[-480px] md:bottom-[-480px] lg:bottom-[-580px] flex gap-14 z-[120] transition-all duration-700 ${isStacked ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <button onClick={() => handleAction('prev')} className="w-12 h-12 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center backdrop-blur-md active:scale-75 transition-all hover:bg-[#FF5C00]">
             <ChevronLeft size={35} />
           </button>

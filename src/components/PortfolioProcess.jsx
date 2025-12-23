@@ -15,7 +15,7 @@ const PortfolioSection = () => {
 
   const ARCH_STRENGTH = 2; 
   
-  // ২. VERTICAL_OFFSET: এটা দিয়ে পুরো স্লাইডারকে উপরে (-) বা নিচে (+) নামাতে পারবেন।
+ 
   const VERTICAL_OFFSET = -9; 
 
   const [progress, setProgress] = useState(0);
@@ -150,7 +150,7 @@ const PortfolioSection = () => {
 
       {/* ... Footer ... */}
          <div className="w-full max-w-7xl  px-4 z-10 -mt-10">
-        <div className="grid grid-cols-2 md:grid-cols-4  text-cente ">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 text-cente ">
           <Step number="01" label="Strategy & Planning" />
           <Step number="02" label="Design & Development" />
           <Step number="03" label="Launch & Growth" />
