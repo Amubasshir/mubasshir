@@ -8,14 +8,29 @@ const PortfolioSection = () => {
   const SPEED = 0.008; 
   const CARD_COUNT = 15; 
   
-  const CIRCLE_RADIUS = 1200; 
+  // State to track device size
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Handle Resize to detect Mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // --- CONFIGURATION (Dynamic based on device) ---
+  // Mobile এ Gap কমানোর জন্য 0.08, Desktop এ 0.13
+  const GAP_ANGLE = isMobile ? 0.12 : 0.13; 
+  // Mobile এ Radius একটু কমানো হয়েছে যাতে বেশি ছড়িয়ে না যায়
+  const CIRCLE_RADIUS = isMobile ? 900 : 1200; 
   const DEPTH_STRENGTH = 3000; 
-  const GAP_ANGLE = 0.13; 
-
-
   const ARCH_STRENGTH = 2; 
-  
- 
   const VERTICAL_OFFSET = -9; 
 
   const [progress, setProgress] = useState(0);
@@ -40,8 +55,6 @@ const PortfolioSection = () => {
     { id: 15, image: "https://framerusercontent.com/images/rBhlRqKtaT1HJXWYXIk0blfFQ.png?scale-down-to=512" },
   ];
 
-
-
   const animate = () => {
     setProgress((prev) => (prev + SPEED) % CARD_COUNT);
     requestRef.current = requestAnimationFrame(animate);
@@ -53,42 +66,35 @@ const PortfolioSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-[#111]  text-white overflow-hidden flex flex-col items-center justify-center py-10 relative font-sans">
-  {/* ... Fade Masks ... */}
-        <div className="absolute -left-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111]  z-40 pointer-events-none blur-xl " />
+    <section className="min-h-screen bg-[#111] text-white overflow-hidden flex flex-col items-center justify-center py-10 relative font-sans">
         
-
-        <div className="absolute -right-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111]  z-40 pointer-events-none blur-xl" />
+        {/* ... Fade Masks ... */}
+        <div className="absolute -left-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111] z-40 pointer-events-none blur-xl " />
+        <div className="absolute -right-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111] z-40 pointer-events-none blur-xl" />
+        
         {/* ... Header ... */}
-      <div className="text-center z-50 mb-4 max-w-3xl px-4">
+        <div className="text-center z-50 mb-4 max-w-3xl px-4">
              <h4 className="text-[#ff5500] font-bold text-sm md:text-2xl mb-4">
                Behind the Designs
              </h4>
              <h2 className="text-4xl md:text-5xl font-bold mb-6 ">
                Curious What Else I’ve <br className="hidden md:block" /> Created?
              </h2>
-             <p className="text-[#757575] text-sm  max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+             <p className="text-[#757575] text-sm max-w-2xl mx-auto mb-10 leading-relaxed font-light">
                Explore more brand identities, packaging, and digital design work in my extended portfolio.
              </p>
-           </div>
-      {/* TOP BUTTON */}
-     <Link href="/projects" className='-mb-30'>
-          <AnimatedButton
-        text="See More Projects" 
-        width="220px" 
-        className="mt-4">
-        
-        </AnimatedButton>
+        </div>
 
-      </Link>
+        {/* TOP BUTTON */}
+        <Link href="/projects" className='-mb-30'>
+          <AnimatedButton
+            text="See More Projects" 
+            width="220px" 
+            className="mt-4">
+          </AnimatedButton>
+        </Link>
     
       <div className="relative w-full max-w-[100vw] h-[550px] md:h-[650px] flex items-center justify-center perspective-[700px]">
-        
-      
-       
-
-       
-
         <div className="relative w-full h-full flex items-center justify-center transform-style-3d">
           {cards.map((card, index) => {
             
@@ -97,13 +103,14 @@ const PortfolioSection = () => {
             if (offset > CARD_COUNT / 2) offset -= CARD_COUNT;
 
             const dist = Math.abs(offset);
+            
+            // Use the dynamic GAP_ANGLE here
             const theta = offset * GAP_ANGLE; 
 
-            // X Position
+            // X Position with dynamic CIRCLE_RADIUS
             const x = Math.sin(theta) * CIRCLE_RADIUS;
             
-            // ✅ Y Position Calculation (Updated)
-            // Math.pow(dist, 2) মানে দূরত্ব বাড়লে Y ভ্যালু দ্রুত বাড়বে (প্যারাবোলিক কার্ভ)
+            // Y Position
             const y = (Math.pow(dist, 2) * ARCH_STRENGTH) + VERTICAL_OFFSET;
 
             // Z Position
@@ -123,7 +130,6 @@ const PortfolioSection = () => {
                 key={card.id}
                 className="absolute will-change-transform"
                 style={{
-                  // ✅ Y ভ্যালু এখানে অ্যাপ্লাই হচ্ছে
                   transform: `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rotateY}deg) scale(${scale})`,
                   zIndex: zIndex,
                   opacity: opacity,
@@ -149,8 +155,8 @@ const PortfolioSection = () => {
       </div>
 
       {/* ... Footer ... */}
-         <div className="w-full max-w-7xl  px-4 z-10 -mt-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 text-cente ">
+      <div className="w-full max-w-7xl px-4 z-10 -mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 text-center">
           <Step number="01" label="Strategy & Planning" />
           <Step number="02" label="Design & Development" />
           <Step number="03" label="Launch & Growth" />
@@ -170,6 +176,4 @@ const Step = ({ number, label }) => (
   </div>
 );
 
-
- 
 export default PortfolioSection;
