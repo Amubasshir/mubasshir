@@ -7,7 +7,7 @@ import ProcessSection from "@/components/ProcessSection";
 import TestimonialGrid from "@/components/TestimonialGrid";
 import MeetYourGuides from "@/components/MeetYourGuides";
 import Image from "next/image";
-import Text from "@/components/text";
+
 
 
 
@@ -20,7 +20,6 @@ export default function Home() {
       <PortfolioProcess/>
       <TestimonialGrid />
       <MeetYourGuides />
-   
       <Footer/>
      
      
