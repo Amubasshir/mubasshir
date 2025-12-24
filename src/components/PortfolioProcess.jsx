@@ -69,8 +69,8 @@ const PortfolioSection = () => {
     <section className="min-h-screen bg-[#111] text-white overflow-hidden flex flex-col items-center justify-center py-10 relative font-sans">
         
         {/* ... Fade Masks ... */}
-        <div className="absolute -left-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111] z-40 pointer-events-none blur-xl " />
-        <div className="absolute -right-10 top-0 bottom-0 w-32 h-full md:w-40 bg-[#111] z-40 pointer-events-none blur-xl" />
+        <div className="absolute -left-10 top-0 bottom-0 w-20 h-full md:w-40 bg-[#111] z-40 pointer-events-none blur-xl " />
+        <div className="absolute -right-10 top-0 bottom-0 w-20 h-full md:w-40 bg-[#111] z-40 pointer-events-none blur-xl" />
         
         {/* ... Header ... */}
         <div className="text-center z-50 mb-4 max-w-3xl px-4">
